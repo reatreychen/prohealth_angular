@@ -1,0 +1,197 @@
+<section class=" px-20 mt-20">
+  <div class=" flex items-center justify-between">
+    <div class=" flex items-center gap-4">
+      <h4 class=" text-[16px] text-[#7d91a0] font-normal">Sort by</h4>
+      <button
+        (click)="filterDoctors('All')"
+        [ngClass]="{
+          'bg-[#307bc4]': selectedFilter === 'All',
+          'text-white': selectedFilter === 'All',
+          'text-[#274760]': selectedFilter !== 'All',
+          'bg-white': selectedFilter !== 'All'
+        }"
+        class="w-fit px-[26px] py-[11px] text-[16px] border border-[#307bc4] rounded-[16px] transition ease-in-out">
+        All
+      </button>
+      <button
+        (click)="filterDoctors('Emergency')"
+        [ngClass]="{
+          'bg-[#307bc4]': selectedFilter === 'Emergency',
+          'text-white': selectedFilter === 'Emergency',
+          'text-[#274760]': selectedFilter !== 'Emergency',
+          'bg-white': selectedFilter !== 'Emergency'
+        }"
+        class="w-fit px-[26px] py-[11px] text-[16px] border border-[#307bc4] rounded-[16px] transition ease-in-out">
+        Emergency
+      </button>
+      <button
+        (click)="filterDoctors('Cardiology')"
+        [ngClass]="{
+          'bg-[#307bc4]': selectedFilter === 'Cardiology',
+          'text-white': selectedFilter === 'Cardiology',
+          'text-[#274760]': selectedFilter !== 'Cardiology',
+          'bg-white': selectedFilter !== 'Cardiology'
+        }"
+        class="w-fit px-[26px] py-[11px] text-[16px] border border-[#307bc4] rounded-[16px] transition ease-in-out">
+        Cardiology
+      </button>
+      <button
+        (click)="filterDoctors('Psychiatry')"
+        [ngClass]="{
+          'bg-[#307bc4]': selectedFilter === 'Psychiatry',
+          'text-white': selectedFilter === 'Psychiatry',
+          'text-[#274760]': selectedFilter !== 'Psychiatry',
+          'bg-white': selectedFilter !== 'Psychiatry'
+        }"
+        class="w-fit px-[26px] py-[11px] text-[16px] border border-[#307bc4] rounded-[16px] transition ease-in-out">
+        Psychiatry
+      </button>
+      <button
+        (click)="filterDoctors('Pediatric')"
+        [ngClass]="{
+          'bg-[#307bc4]': selectedFilter === 'Pediatric',
+          'text-white': selectedFilter === 'Pediatric',
+          'text-[#274760]': selectedFilter !== 'Pediatric',
+          'bg-white': selectedFilter !== 'Pediatric'
+        }"
+        class="w-fit px-[26px] py-[11px] text-[16px] border border-[#307bc4] rounded-[16px] transition ease-in-out">
+        Pediatric
+      </button>
+    </div>
+
+    <div class=" text-[#7d91a0] flex items-center gap-4">
+      <h4 class="text-[16px] font-normal">We have {{ getTotalDoctorsCount() }} doctors</h4>
+      <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0 11.8571H11.8571V0H0V11.8571ZM1.5625 1.5625H10.2948V10.2948H1.5625V1.5625ZM13.1429 0V11.8571H25V0H13.1429ZM23.4375 10.2948H14.7052V1.5625H23.4375V10.2948ZM0 25H11.8571V13.1429H0V25ZM1.5625 14.7052H10.2948V23.4375H1.5625V14.7052ZM13.1429 25H25V13.1429H13.1429V25ZM14.7052 14.7052H23.4375V23.4375H14.7052V14.7052Z"
+          fill="currentColor"></path>
+      </svg>
+      <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0 11.8571H12.2396V0H0V11.8571ZM1.6129 1.5625H10.6267V10.2946H1.6129V1.5625ZM0 25H12.2396V13.1429H0V25ZM1.6129 14.7052H10.6267V23.4375H1.6129V14.7052ZM25 0.85022V2.41272H14.3731V0.85022H25ZM14.3731 9.44458H25V11.0071H14.3731V9.44458ZM14.3731 5.1475H25V6.71H14.3731V5.1475ZM14.3731 13.9929H25V15.5554H14.3731V13.9929ZM14.3731 22.5873H25V24.1498H14.3731V22.5873ZM14.3731 18.2902H25V19.8527H14.3731V18.2902Z"
+          fill="currentColor"></path>
+      </svg>
+    </div>
+  </div>
+
+
+  <!--  doctor card-->
+  <div>
+    <div class=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+      <div *ngFor="let doctor of doctors; trackBy: trackByIndex" class="pt-16">
+        <div class="w-[416px] h-[416px] relative flex items-center justify-center">
+          <img
+            [src]="doctor.image"
+            alt="doctor"
+            class="w-full h-full object-cover object-center bg-gradient-to-tr from-[#f1f8fb] to-[#e6f1fb] rounded-t-[28px]"
+          />
+          <div class="w-[292px] h-[50px] bg-[#307bc4] rounded-t-[28px] flex items-center justify-center absolute bottom-0">
+              <h1 class=" text-white text-lg">{{ doctor.category }}</h1>
+          </div>
+        </div>
+        <div
+          class="w-[416px] h-[300px] py-[32px] px-[40px] hover:bg-white transition-all rounded-b-[28px]"
+        >
+          <article class="flex flex-col items-center justify-center">
+            <h1 class="text-[32px] text-[#274760] font-semibold">{{ doctor.name }}</h1>
+            <h2 class="text-[20px] text-[#274760] font-normal pb-3">{{ doctor.title }}</h2>
+            <p class="text-[16px] text-[#7d91a0] text-center">
+              {{ doctor.description }}
+            </p>
+          </article>
+
+          <!-- socail media -->
+          <div class="flex justify-center items-center gap-4 pt-8">
+            <div
+              class="p-3 cursor-pointer rounded-full w-fit bg-[#307bc499] hover:bg-[#307bc4] transition ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                aria-hidden="true"
+                role="img"
+                class="text-white object-cover"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4z"
+                ></path>
+              </svg>
+            </div>
+
+            <div
+              class="p-3 cursor-pointer rounded-full w-fit bg-[#307bc499] hover:bg-[#307bc4] transition ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                aria-hidden="true"
+                role="img"
+                class="iconify iconify--ri text-white"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M6.94 5a2 2 0 1 1-4-.002a2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z"
+                ></path>
+              </svg>
+            </div>
+
+            <div
+              class="p-3 cursor-pointer rounded-full w-fit bg-[#307bc499] hover:bg-[#307bc4] transition ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                aria-hidden="true"
+                role="img"
+                class="iconify iconify--mdi text-white"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.2 4.2 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.52 8.52 0 0 1-5.33 1.84q-.51 0-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--  pagination-->
+  <div class=" py-20 flex items-center justify-center">
+    <div class="flex items-center gap-6">
+      <svg (click)="previousPage()" [class.opacity-50]="currentPage === 1" [class.cursor-not-allowed]="currentPage === 1" [class.cursor-pointer]="currentPage > 1" class="text-[#307bc4]" width="35" height="24" viewBox="0 0 35 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0.465801 13.0789L11.6023 23.5789C11.9023 23.8522 12.3042 24.0034 12.7213 23.9999C13.1385 23.9965 13.5375 23.8388 13.8325 23.5607C14.1274 23.2825 14.2947 22.9063 14.2984 22.513C14.302 22.1197 14.1416 21.7408 13.8518 21.4579L5.43108 13.5184H33.4091C33.831 13.5184 34.2357 13.3604 34.534 13.0791C34.8324 12.7978 35 12.4163 35 12.0184C35 11.6206 34.8324 11.2391 34.534 10.9578C34.2357 10.6765 33.831 10.5184 33.4091 10.5184H5.43108L13.8518 2.57893C14.0038 2.44056 14.125 2.27505 14.2084 2.09204C14.2917 1.90903 14.3356 1.7122 14.3375 1.51303C14.3393 1.31386 14.2991 1.11635 14.2191 0.932003C14.1391 0.747658 14.0209 0.580179 13.8716 0.439341C13.7222 0.298502 13.5446 0.18712 13.349 0.111698C13.1535 0.0362778 12.944 -0.00167465 12.7328 5.53131e-05C12.5215 0.00178719 12.3128 0.0431671 12.1187 0.12178C11.9246 0.200394 11.749 0.314665 11.6023 0.457932L0.465801 10.9579C0.167549 11.2392 0 11.6207 0 12.0184C0 12.4162 0.167549 12.7976 0.465801 13.0789Z"
+          fill="currentColor"></path>
+      </svg>
+      <!--      number of pagination-->
+      <h1 *ngFor="let page of pageNumbers" 
+          (click)="goToPage(page)" 
+          [ngClass]="{
+            'bg-[#307bc4]': currentPage === page,
+            'text-white': currentPage === page,
+            'bg-white': currentPage !== page
+          }"
+          class="w-[45px] h-[45px] rounded-lg text-lg flex items-center justify-center cursor-pointer hover:bg-[#307bc4] hover:text-white transition ease-in-out">
+        {{ page }}
+      </h1>
+      <svg (click)="nextPage()" [class.opacity-50]="currentPage === totalPages" [class.cursor-not-allowed]="currentPage === totalPages" [class.cursor-pointer]="currentPage < totalPages" class=" text-[#307bc4]" width="35" height="24" viewBox="0 0 35 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M34.5342 13.0789L23.3977 23.5789C23.0977 23.8522 22.6958 24.0034 22.2787 23.9999C21.8615 23.9965 21.4625 23.8388 21.1675 23.5607C20.8726 23.2825 20.7053 22.9063 20.7016 22.513C20.698 22.1197 20.8584 21.7408 21.1482 21.4579L29.5689 13.5184H1.59092C1.16899 13.5184 0.764327 13.3604 0.465971 13.0791C0.167615 12.7978 0 12.4163 0 12.0184C0 11.6206 0.167615 11.2391 0.465971 10.9578C0.764327 10.6765 1.16899 10.5184 1.59092 10.5184H29.5689L21.1482 2.57893C20.9962 2.44056 20.875 2.27505 20.7916 2.09204C20.7083 1.90903 20.6644 1.7122 20.6625 1.51303C20.6607 1.31386 20.7009 1.11635 20.7809 0.932003C20.8609 0.747658 20.9791 0.580179 21.1284 0.439341C21.2778 0.298502 21.4554 0.18712 21.651 0.111698C21.8465 0.0362778 22.056 -0.00167465 22.2672 5.53131e-05C22.4785 0.00178719 22.6872 0.0431671 22.8813 0.12178C23.0754 0.200394 23.251 0.314665 23.3977 0.457932L34.5342 10.9579C34.8325 11.2392 35 11.6207 35 12.0184C35 12.4162 34.8325 12.7976 34.5342 13.0789Z"
+          fill="currentColor"></path>
+      </svg>
+    </div>
+  </div>
+</section>

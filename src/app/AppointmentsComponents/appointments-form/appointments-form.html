@@ -1,0 +1,173 @@
+<section class="px-28 mt-32">
+  <div>
+    <form class="w-full flex gap-4 justify-between ">
+      <div class="w-[770px]">
+        <h1 class="text-[#274760] text-[32px]">Appointment</h1>
+
+        <div class=" flex items-center gap-4 w-full">
+          <div class="w-full ">
+            <label class="block text-[#274760] text-[16px] font-normal mt-8 mb-2" for="fullName"
+            >Name</label
+            >
+            <input
+              class="w-full border border-[#307bc3] rounded-lg px-[16px] py-[20px] outline-none"
+              type="text"
+              id="fullName"
+              name="fullName"
+              placeholder="Chen Reatrey"
+            />
+          </div>
+
+
+          <div class="w-full">
+            <label class="block text-[#274760] text-[16px] font-normal mt-8 mb-2" for="fullName"
+            >Phone Number</label
+            >
+            <input
+              class="w-full border border-[#307bc3] rounded-lg px-[16px] py-[20px] outline-none"
+              type="text"
+              id="phoneNumber"
+              name="phoneNumber"
+              placeholder="+855 1234 5678"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[#274760] text-[16px] font-normal mt-8 mb-2" for="fullName"
+          >Medical Record Number</label
+          >
+          <input
+            class="w-full border border-[#307bc3] rounded-lg px-[16px] py-[20px] outline-none"
+            type="text"
+            id="medicalRecordNumber"
+            name="medicalRecordNumber"
+            placeholder="232134-234-4325-3532 "
+          />
+        </div>
+
+
+        <div class="flex items-center gap-4">
+          <div class="w-full">
+            <label class="block text-[#274760] text-[16px] font-normal mt-8 mb-2" for="fullName"
+            >Reason for visit</label
+            >
+            <!--          select-->
+            <select
+              class="w-full border border-[#307bc3] rounded-lg px-[16px] py-[20px] outline-none"
+              id="reasonForVisit"
+              name="reasonForVisit"
+            >
+              <option value="" disabled selected>Select an option</option>
+              <option value="generalConsultation">Operation</option>
+              <option value="followUpVisit">Pathology Test</option>
+              <option value="specialistReferral">Report Checkup</option>
+              <option value="routineCheckup">Other Checkup</option>
+            </select>
+          </div>
+
+          <div class="w-full">
+            <label class="block text-[#274760] text-[16px] font-normal mt-8 mb-2" for="fullName"
+            >Department</label
+            >
+            <!--          select-->
+            <select
+              class="w-full border border-[#307bc3] rounded-lg px-[16px] py-[20px] outline-none"
+              id=" department"
+              name=" department"
+            >
+              <option value="" disabled selected>Select an option</option>
+              <option value="generalConsultation">Cardiology</option>
+              <option value="followUpVisit">Neurology</option>
+              <option value="specialistReferral">Orthopedics</option>
+              <option value="routineCheckup">Pediatrics</option>
+              <option value="routineCheckup">Dermatology</option>
+
+            </select>
+          </div>
+        </div>
+
+
+        <div class=" flex items-center gap-4">
+          <div class="w-full">
+            <label class="block text-[#274760] text-[16px] font-normal mt-8 mb-2" for="fullName"
+            >Preferred Date</label
+            >
+            <!--          select date-->
+            <input
+              class="w-full border border-[#307bc3] rounded-lg px-[16px] py-[20px] outline-none"
+              type="date"
+              id="preferredDate"
+              name="preferredDate"
+            />
+          </div>
+
+          <div class="w-full">
+            <label class="block text-[#274760] text-[16px] font-normal mt-8 mb-2" for="fullName"
+            >Preferred Time</label
+            >
+            <!--          select an option-->
+            <select
+              class="w-full border border-[#307bc3] rounded-lg px-[16px] py-[20px] outline-none"
+              id=" preferredTime"
+              name=" preferredTime"
+            >
+              <option value="" disabled selected>Select an option</option>
+              <option value="generalConsultation"> 9AM-10AM</option>
+              <option value="followUpVisit"> 10AM-11AM</option>
+              <option value="specialistReferral">11AM-12PM</option>
+              <option value="routineCheckup">1PM-2PM</option>
+            </select>
+          </div>
+        </div>
+
+
+        <button
+          class="book-now-btn mt-10 mb-10 w-[178px] h-[50px] flex items-center justify-center text-white py-3 px-3 gap-2 rounded-full shadow-md transition ease-in-out text-[16px] duration-100"
+        >
+          <span>Submit</span>
+          <!-- Right Arrow Icon -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </div>
+
+
+      <!--    right side-->
+      <div class="w-[416px]">
+        <h1 class="text-[#274760] text-[32px]">Contact Info</h1>
+        <div class=" w-[416px] h-[248px] pt-14">
+          <img [src] ='contact' alt="contact" class=" object-cover rounded-lg">
+        </div>
+
+        <article class=" flex flex-col gap-6 pt-32 pb-20">
+          <div class="flex flex-col gap-2">
+            <h1 class="text-[22px] text-[#274760] font-semibold">Phone</h1>
+            <p class="text-[16px] text-[#274760] font-medium">123-456-7890</p>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h1 class="text-[22px] text-[#274760] font-semibold">Email Us</h1>
+            <p class="text-[16px] text-[#274760] font-medium">hellocallcenter@gmail.com</p>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h1 class="text-[22px] text-[#274760] font-semibold">Our Location</h1>
+            <p class="text-[16px] text-[#274760] font-medium">123 Anywhere St., Any City, 12345</p>
+          </div>
+        </article>
+      </div>
+    </form>
+
+  </div>
+</section>

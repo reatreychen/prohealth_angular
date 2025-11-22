@@ -1,0 +1,113 @@
+/* image-hover.component.css */
+:host ::ng-deep {
+  .relative {
+    position: relative;
+  }
+
+  .absolute {
+    position: absolute;
+  }
+
+  .inset-0 {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  .w-\[416px\] {
+    width: 416px;
+  }
+
+  .h-\[429px\] {
+    height: 429px;
+  }
+
+  .rounded-\[28px\] {
+    border-radius: 28px;
+  }
+
+  .overflow-hidden {
+    overflow: hidden;
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  .w-full {
+    width: 100%;
+  }
+
+  .h-full {
+    height: 100%;
+  }
+
+  .object-cover {
+    object-fit: cover;
+  }
+
+  .bg-blue-400 {
+    background-color: #60a5fa;
+  }
+
+  .opacity-30 {
+    opacity: 0.3;
+  }
+
+  .transition-opacity {
+    transition-property: opacity;
+  }
+
+  .transition-all {
+    transition-property: all;
+  }
+
+  .duration-300 {
+    transition-duration: 300ms;
+  }
+
+  .bottom-6 {
+    bottom: 24px;
+  }
+
+  .right-6 {
+    right: 24px;
+  }
+
+  .bg-white {
+    background-color: white;
+  }
+
+  .rounded-full {
+    border-radius: 9999px;
+  }
+
+  .p-3 {
+    padding: 12px;
+  }
+
+  .shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .hover\:shadow-xl:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+
+  .hover\:scale-110:hover {
+    transform: scale(1.1);
+  }
+
+  .w-6 {
+    width: 24px;
+  }
+
+  .h-6 {
+    height: 24px;
+  }
+
+  .text-blue-600 {
+    color: #2563eb;
+  }
+}

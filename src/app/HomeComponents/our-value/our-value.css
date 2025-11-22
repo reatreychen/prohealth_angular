@@ -1,0 +1,41 @@
+/* Clean, minimal styling matching the reference design */
+
+/* Smooth carousel transitions */
+.flex.transition-transform {
+    will-change: transform;
+  }
+  
+  /* Subtle card shadows */
+  .shadow-sm {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  
+  .hover\:shadow-lg:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* Button styling */
+  button {
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    transform: scale(1.05);
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+  
+  /* Prevent text selection during carousel interaction */
+  .flex-shrink-0 {
+    user-select: none;
+  }
+  
+  /* Ensure proper spacing on mobile */
+  @media (max-width: 768px) {
+    section {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }

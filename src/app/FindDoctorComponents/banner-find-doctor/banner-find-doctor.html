@@ -1,0 +1,23 @@
+<section>
+  <div
+    class="h-[625px]"
+    [ngStyle]="{ 'background-image': 'url(' + background + ')' }"
+    style="background-size: cover; background-position: center"
+  >
+    <div class="px-20 flex items-center justify-center pt-[50px]">
+
+      <!--left side  -->
+      <div class=" flex flex-col gap-2 w-[648px] h-[192px]">
+        <h1 class=" text-[#274760] text-[56px] font-semibold leading-[70px]">Introduce You to <br>
+          Our Experts</h1>
+        <p class="text-[#274760] text-[20px] font-normal pt-4">The list of certified doctors with years of <br>
+          professional experiences</p>
+      </div>
+
+      <!-- right side -->
+      <div class="pt-28">
+        <img [src]="findDoctor" alt="doctor" class="w-[736px] h-[460px]">
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,90 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Animation for total patient image */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+}
+
+
+
+
+@keyframes float_open_hours {
+  0%, 100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(-40px);
+  }
+}
+
+@keyframes professional-logo-animation {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animation classes */
+.total-patient-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+.heart-animation {
+  animation: heartbeat 3s ease-in-out infinite;
+}
+
+.open-animation {
+  animation: float_open_hours 3s ease-in-out infinite;
+}
+
+.professionals-animation {
+  animation: professional-logo-animation 10s linear infinite;
+}
+
+@layer base {
+  html { font-family: 'Poppins', sans-serif; }
+}
+
+.host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f3f4f6; /* bg-gray-100 */
+  padding: 1rem; /* p-4 */
+  font-family: 'Inter', sans-serif;
+}

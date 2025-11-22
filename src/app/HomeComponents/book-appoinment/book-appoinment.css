@@ -1,0 +1,13 @@
+
+/* Book Now button gradients and shadow */
+.book-now-btn {
+  background: linear-gradient(90deg, #2680c2 0%, #24425e 100%);
+  color: white;
+  border-radius: 9999px; /* full rounded */
+  box-shadow: 0 4px 20px 0 rgba(56, 155, 255, 0.08);
+  transition: background 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s;
+}
+.book-now-btn:hover {
+  background: linear-gradient(90deg, #24425e 0%, #2680c2 100%);
+  box-shadow: 0 8px 28px 0 rgba(56, 155, 255, 0.18);
+}

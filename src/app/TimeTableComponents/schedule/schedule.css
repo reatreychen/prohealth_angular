@@ -1,0 +1,78 @@
+/* filepath: e:\Prohealth Project\Prohealth_project\src\app\TimeTableComponents\schedule\schedule.css */
+
+.schedule-root {
+  --time-col-width: 120px;
+  --hour-row-height: 128px;
+  --hour-line-color: rgba(14, 49, 64, 0.04);
+  --col-sep: #dfeef4;
+  --header-color: #0f3a46;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  padding-top: 8px;
+}
+
+.header-day {
+  padding: 10px 6px 12px;
+  color: var(--header-color);
+  font-weight: 600;
+  border-left: 1px solid transparent;
+  text-align: center;
+}
+
+/* slightly reduce gap for denser layout */
+.grid {
+  column-gap: 20px;
+}
+
+.time-column {
+  width: var(--time-col-width);
+}
+
+/* Center the time text vertically in each slot */
+.time-label {
+  padding-left: 16px;
+  color: #6b7280; /* gray-500 */
+  border-bottom: 1px solid #eef6fb;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  height: var(--hour-row-height);
+}
+
+.day-column {
+  padding-left: 6px;
+  padding-right: 6px;
+  box-sizing: border-box;
+}
+
+/* Draw horizontal hour lines in each day column using a repeating background */
+.day-column > .relative {
+  background-image: linear-gradient(to bottom, var(--hour-line-color) 1px, transparent 1px);
+  background-size: 100% var(--hour-row-height);
+  background-repeat: repeat-y;
+  background-position: 0 0;
+}
+
+/* Subtle vertical separators between day columns */
+.grid > .day-column {
+  border-left: 1px solid var(--col-sep);
+}
+
+/* thin top border across the schedule area */
+.schedule-root > .grid:first-child {
+  border-bottom: 1px solid var(--col-sep);
+}
+
+/* make the time column labels a bit lighter and fixed width */
+.time-column {
+  padding-right: 8px;
+}
+
+/* ensure day headers don't wrap tightly */
+.header-day {
+  white-space: nowrap;
+}
+
+/* small responsive tweak: ensure schedule fits in narrow screens */
+@media (max-width: 900px) {
+  .schedule-root { --time-col-width: 90px; }
+}

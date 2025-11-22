@@ -1,0 +1,33 @@
+<div class="px-10 py-10 schedule-root mt-20 mb-20">
+  <!-- Header Days -->
+  <div class="grid" style="grid-template-columns: 120px repeat(6, 1fr); border-bottom: 1px solid #e6eef5; padding-bottom: 1rem;">
+    <div></div>
+    <div *ngFor="let d of days" class="text-center font-semibold text-lg header-day">
+      {{ d }}
+    </div>
+  </div>
+
+  <!-- Time Rows -->
+  <div class="grid" style="grid-template-columns: 120px repeat(6, 1fr);">
+    <!-- Time Column -->
+    <div class="flex flex-col time-column">
+      <div *ngFor="let t of timeSlots"
+           class="h-32 text-sm text-gray-600 flex items-start pt-2 time-label">
+        {{ t }}
+      </div>
+    </div>
+
+    <!-- Schedule Columns -->
+    <div *ngFor="let d of days" class="border-l day-column">
+      <div class="flex flex-col relative" [style.height.px]="totalHeightPx">
+        <ng-container *ngFor="let item of schedule">
+          <app-schedule-item
+            *ngIf="item.day === d"
+            [data]="item">
+          </app-schedule-item>
+        </ng-container>
+
+      </div>
+    </div>
+  </div>
+</div>

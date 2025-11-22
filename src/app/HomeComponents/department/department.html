@@ -1,0 +1,34 @@
+<section class="px-20 mt-20">
+    <div class=" flex items-center justify-between gap-20">
+        <!-- left side -->
+         <div class=" grid grid-cols-4 gap-4">
+            <div
+              *ngFor="let dept of departments"
+              [ngClass]="{
+                'bg-gradient-to-br from-[#c6e3ef] via-[#a2d0e4] to-[#8ec0f1] flex items-center justify-center flex-col gap-4 group hover:scale-105 hover:shadow-xl transition-all duration-300 cursor-pointer': !dept.isEmpty,
+                'bg-gray-50 block': dept.isEmpty
+              }"
+              class="w-[196px] h-[250px] px-[15px] py-[25px] rounded-[24px]"
+            >
+              <ng-container *ngIf="!dept.isEmpty">
+                <img
+                  [src]="dept.icon"
+                  [alt]="dept.iconAlt"
+                  class="object-contain group-hover:scale-110 transition-transform duration-300"
+                  [style.width]="dept.iconWidth"
+                  [style.height]="dept.iconHeight"
+                />
+                <div class=" text-[20px] text-white font-medium flex items-center justify-center flex-col group-hover:translate-y-[-4px] transition-transform duration-300">
+                  <p *ngFor="let line of dept.nameLines" class="group-hover:text-white transition-colors duration-300">{{ line }}</p>
+                </div>
+              </ng-container>
+            </div>
+         </div>
+
+         <!-- right side -->
+          <div class=" flex flex-col">
+                <p class=" text-[26px] font-semibold text-[#307bc4]">OUR DEPARTMENT</p>
+                <p class=" text-[57px] font-semibold text-[#274760]">For Your Health</p>
+          </div> 
+    </div>
+  </section>

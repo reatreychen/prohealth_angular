@@ -1,0 +1,132 @@
+<section class="px-20 mt-28 mb-20">
+  <div>
+    <div class="flex flex-col items-center justify-center">
+      <p class="text-[26px] font-semibold text-[#307bc4]">BLOG POSTS</p>
+      <p class="text-[57px] font-semibold text-[#274760]">Latest Update</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 md:grid-cols-1 grid-cols-1 mt-20">
+      <!-- card horizental -->
+      <div class="flex flex-col">
+        <div class="w-[586px] h-[396px]">
+          <img [src]="blog1" alt="blog" class="w-full h-full object-cover rounded-t-[28px]" />
+        </div>
+
+        <div
+          class="w-[586px] h-[208px] hover bg-white transition-all ease-in-out duration-100 py-[45px] px-[40px] rounded-b-[28px]"
+        >
+          <h1 class="text-[25px] text-[#274760] w-full font-semibold">
+            Dealing with Stress: Practical Strategies for a Healthier Mind
+          </h1>
+
+          <div class=" flex items-center justify-between">
+            <p class="text-[16px] text-[#7d91a9] font-normal">May 19, 2025</p>
+            <!-- socail media -->
+            <div class="flex justify-center items-center gap-4 pt-8">
+              <div
+                class="p-3 rounded-full w-fit border border-[#307bc4] bg-white hover:bg-[#307bc4] transition ease-in-out hover:text-white"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  aria-hidden="true"
+                  role="img"
+                  class= "text-[#307bc4] hover:text-white object-cover"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4z"
+                  ></path>
+                </svg>
+              </div>
+
+              <div
+                class="p-3 rounded-full w-fit border border-[#307bc4] bg-white hover:bg-[#307bc4] transition ease-in-out"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  aria-hidden="true"
+                  role="img"
+                  class="iconify iconify--ri text-[#307bc4] hover:text-white"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M6.94 5a2 2 0 1 1-4-.002a2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z"
+                  ></path>
+                </svg>
+              </div>
+
+              <div
+                class="p-3 rounded-full w-fit border border-[#307bc4] bg-white hover:bg-[#307bc4] transition ease-in-out"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  aria-hidden="true"
+                  role="img"
+                  class="iconify iconify--mdi text-[#307bc4] hover:text-white"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M22.46 6c-.77.35-1.6.58-2.46.69c.88-.53 1.56-1.37 1.88-2.38c-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29c0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15c0 1.49.75 2.81 1.91 3.56c-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.2 4.2 0 0 1-1.93.07a4.28 4.28 0 0 0 4 2.98a8.52 8.52 0 0 1-5.33 1.84q-.51 0-1.02-.06C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56c.84-.6 1.56-1.36 2.14-2.23"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- card verticale -->
+      <div class=" flex flex-col gap-5"> 
+        <!-- card 1 -->
+            <div class=" flex ">
+                <div class=" w-[190px] h-[188px] ">
+                    <img [src]="blog2" alt="blog" class="w-full h-full object-cover rounded-l-[28px]">
+                </div>
+
+                <div class="w-[446px] h-[188px] pl-[30px] pr-[15px] pt-[15px] pb-[15px] bg-white rounded-r-[28px] flex flex-col">
+                    <h1 class=" text-[22px] text-[#274760] font-medium">The Impact of Stress on Mental Health and How to Cope</h1>
+                    <p class="text-[16px] text-[#7d91a9] font-normal pt-4">May 19, 2025</p>
+                </div>
+            </div>
+
+            <!-- card 2 -->
+            <div class=" flex ">
+                <div class=" w-[190px] h-[188px] ">
+                    <img [src]="blog3" alt="blog" class="w-full h-full object-cover rounded-l-[28px]">
+                </div>
+
+                <div class="w-[446px] h-[188px] pl-[30px] pr-[15px] pt-[15px] pb-[15px] bg-white rounded-r-[28px] flex flex-col">
+                    <h1 class=" text-[22px] text-[#274760] font-medium">The Impact of Stress on Mental Health and How to Cope</h1>
+                    <p class="text-[16px] text-[#7d91a9] font-normal pt-4">May 19, 2025</p>
+                </div>
+            </div>
+
+
+
+            <!-- card 3 -->
+            <div class=" flex ">
+                <div class=" w-[190px] h-[188px] ">
+                    <img [src]="blog4" alt="blog" class="w-full h-full object-cover rounded-l-[28px]">
+                </div>
+
+                <div class="w-[446px] h-[188px] pl-[30px] pr-[15px] pt-[15px] pb-[15px] bg-white rounded-r-[28px] flex flex-col">
+                    <h1 class=" text-[22px] text-[#274760] font-medium">The Impact of Stress on Mental Health and How to Cope</h1>
+                    <p class="text-[16px] text-[#7d91a9] font-normal pt-4">May 19, 2025</p>
+                </div>
+            </div>
+      </div>
+    </div>
+  </div>
+</section>

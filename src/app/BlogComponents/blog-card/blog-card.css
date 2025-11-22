@@ -1,0 +1,10 @@
+/* file: Prohealth_project/src/app/BlogComponents/blog-card/blog-card.component.css */
+.card-item {
+  transition: transform 300ms cubic-bezier(.2,.8,.2,1), box-shadow 300ms;
+  will-change: transform;
+  cursor: pointer;
+}
+
+.card-item:hover {
+  transform: translateY(-10px) scale(1);
+}

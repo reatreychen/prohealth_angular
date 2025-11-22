@@ -1,0 +1,13 @@
+<section class="mt-32 flex items-center justify-center">
+  <div class="h-[334px] relative w-[1296px] rounded-[28px] flex items-center"
+       [ngStyle]="{ 'background-image': 'url(' + background_about + ')' }"
+       style="background-size: cover; background-position: center"
+  >
+    <div class=" flex items-center justify-center gap-5">
+      <div *ngFor="let stat of statistics" class="w-[240px] h-[164px] px-[30px] py-[20px] flex flex-col items-center justify-center">
+        <h1 class="text-[56px] text-[#274760] font-semibold">{{ stat.value }}</h1>
+        <p class="text-[16px] text-[#274760] font-normal">{{ stat.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>

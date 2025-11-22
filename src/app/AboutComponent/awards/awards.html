@@ -1,0 +1,21 @@
+<section class="mt-32 mb-24">
+  <div class="flex items-center flex-col justify-center">
+    <p class=" text-[26px] font-semibold text-[#307bc4]">AWARDS</p>
+    <p class=" text-[56px] text-center font-semibold text-[#274760] leading-[70px] pt-3 w-full">Winning Awards and <br>
+      Recognition</p>
+    <p class="text-[16px] text-[#7d91a0] text-center pt-[25px]">We have been recognized for our commitment to <br>
+      excellence in healthcare.
+
+    </p>
+  </div>
+
+
+  <div class=" flex items-center justify-center gap-6 pt-6">
+    <div *ngFor="let awardItem of awards" class="w-[306px] h-[120px] p-[20px] bg-white rounded-[16px] shadow-lg flex items-center gap-4">
+      <div class=" w-[80px] h-[80px] bg-[#307bc4] rounded-lg flex items-center justify-center">
+        <img [src]="awardItem.image" [alt]="awardItem.name" class="w-[40px] h-[50px] object-cover"/>
+      </div>
+      <p class=" text-[#274760] text-[18px] font-medium w-[171px]">{{ awardItem.name }}</p>
+    </div>
+  </div>
+</section>

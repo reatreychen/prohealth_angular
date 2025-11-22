@@ -1,0 +1,30 @@
+<section class=" px-28 mt-32">
+  <div class="flex gap-20">
+    <!--        left side-->
+    <div class="w-[481px] h-[660px]">
+      <img [src]="choose" alt="choose us" class=" object-cover rounded-3xl">
+    </div>
+
+    <!--right side-->
+    <div>
+      <h1 class=" text-[56px] text-[#274760] font-semibold">Why Choose Us</h1>
+      <div class=" grid lg:grid-cols-2 md:grid-cols-1 grid-cols-1 pt-16 gap-10">
+        <div *ngFor="let feature of features" class="relative w-[361px] h-[243px]">
+          <div>
+            <div class=" w-[40px] h-[40px] bg-[#307bc3] rounded-full flex items-center justify-center text-white">
+              <img [src]="feature.icon" [alt]="feature.iconAlt" class="object-cover" [style.width]="feature.iconWidth" [style.height]="feature.iconHeight">
+            </div>
+            <article class=" pt-4">
+              <h1 class=" text-[#274760] text-[25px] pb-[12px] font-semibold">{{ feature.title }}</h1>
+              <p class="text-[#7d91a9] text-[16px]">{{ feature.description }}</p>
+            </article>
+          </div>
+
+          <div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
