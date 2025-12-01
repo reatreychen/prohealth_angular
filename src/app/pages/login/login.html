@@ -35,6 +35,22 @@
           ></i>
         </div>
 
+        <!-- select value -->
+        <div class="relative w-full h-14 mb-7 ">
+          <select
+            [(ngModel)]="userType"
+            name="userType"
+            required
+            class="w-full h-full border-2 border-white/20 bg-gray-600 rounded-full pl-5 pr-12 text-white placeholder-gray-600 text-base focus:outline-none focus:border-white/40 transition appearance-none"
+          >
+            <option value="" disabled selected>Select User Type</option>
+            <option value="admin">Admin</option>
+            <option value="general">General</option>
+          </select>
+          <i class="ri-user-shared-fill absolute top-1/2 right-5 -translate-y-1/2 text-gray-600 text-lg"></i>
+        </div>
+
+
         <!-- Remember & Forgot Password -->
         <div class="flex items-center justify-between mb-6 mt-4">
           <label class="flex items-center cursor-pointer">

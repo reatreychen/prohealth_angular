@@ -13,6 +13,8 @@ export class Login {
   showPassword = false;
   username = '';
   password = '';
+  userType: 'Admin' | 'User' = 'User';
+
   rememberMe = false;
 
   togglePasswordVisibility() {
@@ -23,7 +25,8 @@ export class Login {
     console.log({
       username: this.username,
       password: this.password,
-      rememberMe: this.rememberMe,
+      userType: this.userType,
+      rememberMe: this.rememberMe
     });
   }
 }
