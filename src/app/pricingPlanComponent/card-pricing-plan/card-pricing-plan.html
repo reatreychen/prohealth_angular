@@ -1,0 +1,88 @@
+<section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-200 py-20 px-5">
+    <div class=" max-w-[1400px] mx-auto">
+
+        <!-- Loading State -->
+        <div *ngIf="loading" class="flex flex-col items-center justify-center py-16 gap-5">
+            <div class="w-12 h-12 border-4 border-[#307bc4]/10 border-t-[#307bc4] rounded-full animate-spin"></div>
+            <p class="text-slate-700 text-lg font-medium">Loading pricing plans...</p>
+        </div>
+
+        <!-- Error State -->
+        <div *ngIf="error" class="flex flex-col items-center justify-center py-16 gap-5">
+            <p class="text-red-600 text-lg font-medium">{{ error }}</p>
+            <button (click)="loadPricingPlans()"
+                class="px-8 py-3 bg-[#307bc4] text-white rounded-xl font-semibold hover:bg-[#245d96] transition-all shadow-lg shadow-[#307bc4]/30 hover:-translate-y-0.5">
+                Retry
+            </button>
+        </div>
+
+        <!-- Pricing Cards -->
+        <div *ngIf="!loading && !error" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div *ngFor="let plan of pricingPlans; let i = index"
+                class="bg-white rounded-[20px] shadow-xl overflow-hidden flex flex-col relative transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#307bc4]/10"
+                [class.transform]="plan.subtitle === 'Popular'" [class.scale-105]="plan.subtitle === 'Popular'"
+                [class.z-10]="plan.subtitle === 'Popular'" [style.animation-delay.ms]="i * 100">
+
+                <!-- Card Header -->
+                <div class="bg-[#307bc4] w-[416px] h-[220px] p-[40px] text-center flex flex-col items-center">
+
+                    <!-- Plan Name & Popular Badge Container -->
+                    <div class="inline-flex items-center justify-center relative mb-7">
+                        <!-- Plan Name Pill -->
+                        <h3 class="z-20 m-0 text-[22px] font-semibold text-white py-2 px-6 border border-white/60 rounded-full bg-[#307bc4] lg:bg-transparent"
+                            [class.rounded-r-none]="plan.subtitle === 'Popular'"
+                            [class.border-r-0]="plan.subtitle === 'Popular'"
+                            [class.bg-white_10]="plan.subtitle === 'Popular'">
+                            {{ plan.name }}
+                        </h3>
+
+                        <!-- Popular Badge -->
+                        <div *ngIf="plan.subtitle === 'Popular'"
+                            class="z-10 bg-white/30 text-[#0f2b4a] text-sm font-semibold py-2 px-5 pl-6 -ml-3 rounded-r-full backdrop-blur-sm border border-white/30 border-l-0 flex items-center h-full">
+                            <span>{{ plan.subtitle }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="flex items-baseline justify-center gap-1 mt-2">
+                        <span class="text-4xl font-bold text-white">{{ plan.currency === 'USD' ? '$' : plan.currency
+                            }}</span>
+                        <span class="text-6xl font-extrabold text-white tracking-tighter leading-none">{{ plan.price
+                            }}</span>
+                        <span class="text-lg font-medium text-white/80">/{{ plan.duration === 1 ? 'month' :
+                            plan.duration + ' months' }}</span>
+                    </div>
+                </div>
+
+                <!-- Card Body -->
+                <div class="p-8 pb-10 pt-16 flex-grow bg-white h-[471px]">
+                    <ul class="space-y-4">
+                        <li *ngFor="let feature of plan.features" class="flex items-start gap-4">
+                            <!-- Check Icon -->
+                            <svg class="w-6 h-6 text-[#307bc4] flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="currentColor" class="opacity-100" />
+                                <path d="M8 12L11 15L16 9" stroke="white" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span class="text-[20px] font-normal text-[#274760] leading-relaxed">{{ feature }}</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card Footer -->
+                <div class="px-8 pb-10 bg-white">
+                    <button
+                        class="w-full py-3 px-8 bg-[#205282] text-white rounded-[28px] font-normal text-lg flex items-center justify-center gap-2 hover:bg-[#183d61] transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 group">
+                        <span>Get Started</span>
+                        <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

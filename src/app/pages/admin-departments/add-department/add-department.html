@@ -1,0 +1,78 @@
+<div class="p-6 bg-gray-50 min-h-screen">
+    <div class="max-w-xl mx-auto">
+        <div class="mb-8">
+            <h1 class="text-2xl font-bold text-gray-900">{{isEditMode ? 'Edit Department' : 'Add New Department'}}</h1>
+            <p class="text-gray-500 mt-1">{{isEditMode ? 'Update' : 'Register'}} a hospital department</p>
+        </div>
+
+        <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()"
+            class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 space-y-6">
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Department Title *</label>
+                <input type="text" formControlName="title" placeholder="e.g. Cardiology, Neurology"
+                    class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all">
+                <div *ngIf="departmentForm.get('title')?.touched && departmentForm.get('title')?.invalid"
+                    class="text-red-500 text-xs mt-1">
+                    Title is required (min 3 chars).
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Description *</label>
+                <textarea formControlName="description" rows="5"
+                    placeholder="Detailed description of services provided..."
+                    class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"></textarea>
+                <div *ngIf="departmentForm.get('description')?.touched && departmentForm.get('description')?.invalid"
+                    class="text-red-500 text-xs mt-1">
+                    Description is required.
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Department Image</label>
+                <div
+                    class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-200 border-dashed rounded-xl hover:border-indigo-400 transition-colors cursor-pointer relative">
+                    <div class="space-y-1 text-center">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
+                            viewBox="0 0 48 48" aria-hidden="true">
+                            <path
+                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <div class="flex text-sm text-gray-600">
+                            <label for="file-upload"
+                                class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                <span>Upload a file</span>
+                                <input id="file-upload" name="file-upload" type="file" class="sr-only"
+                                    (change)="onFileSelected($event)" multiple accept="image/*">
+                            </label>
+                            <p class="pl-1">or drag and drop</p>
+                        </div>
+                        <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                    </div>
+                </div>
+
+                <!-- Image Previews -->
+                <div *ngIf="imagePreviews.length > 0" class="mt-4 grid grid-cols-3 gap-4">
+                    <div *ngFor="let preview of imagePreviews"
+                        class="relative aspect-square rounded-lg overflow-hidden border border-gray-100 shadow-sm">
+                        <img [src]="preview" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end gap-4 border-t border-gray-50 pt-6">
+                <button type="button" (click)="onCancel()"
+                    class="px-6 py-2.5 text-gray-600 font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    Cancel
+                </button>
+                <button type="submit" [disabled]="isLoading"
+                    class="px-8 py-2.5 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 shadow-md transition-all flex items-center gap-2">
+                    <span *ngIf="isLoading"
+                        class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                    {{isEditMode ? 'Update' : 'Create'}} Department
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

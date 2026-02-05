@@ -1,0 +1,22 @@
+<div class="min-h-screen bg-gray-100 font-work-sans">
+
+  <!-- Fixed Header (Z-Index highest) -->
+  <app-admin-header (toggleSidebar)="toggleSidebar()" class="block relative z-50">
+  </app-admin-header>
+
+  <!-- Container for Sidebar + Main -->
+  <div class="flex pt-16 min-h-screen">
+    <!-- Sidebar -->
+    <app-sidebar [isSidebarOpen]="isSidebarOpen" (close)="toggleSidebar()">
+    </app-sidebar>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 overflow-y-auto p-8 relative transition-all duration-300" [class.lg:ml-64]="isSidebarOpen">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <!-- Mobile Overlay -->
+  <div *ngIf="isSidebarOpen" (click)="toggleSidebar()" class="fixed inset-0 bg-black/50 z-30 lg:hidden top-16">
+  </div>
+</div>

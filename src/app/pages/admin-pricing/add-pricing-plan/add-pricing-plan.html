@@ -1,0 +1,110 @@
+<div class="p-6 bg-gray-50 min-h-screen">
+    <div class="max-w-3xl mx-auto">
+        <!-- Header -->
+        <div class="flex items-center gap-4 mb-8">
+            <button routerLink="/admin/pricing"
+                class="p-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+            </button>
+            <div>
+                <h1 class="text-2xl font-bold text-gray-900">{{isEditMode ? 'Edit' : 'Create'}} Pricing Plan</h1>
+                <p class="text-gray-500">Configure subscription tiers and features</p>
+            </div>
+        </div>
+
+        <!-- Form Card -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <form [formGroup]="planForm" (ngSubmit)="onSubmit()" class="p-8 space-y-6">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Name Field -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-gray-700">Plan Name <span
+                                class="text-red-500">*</span></label>
+                        <input type="text" formControlName="name" placeholder="Ex: Premium Plan"
+                            class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none"
+                            [ngClass]="{'border-red-500 bg-red-50': planForm.get('name')?.touched && planForm.get('name')?.invalid}">
+                    </div>
+
+                    <!-- Subtitle Field -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-gray-700">Subtitle / Tagline <span
+                                class="text-red-500">*</span></label>
+                        <input type="text" formControlName="subtitle" placeholder="Ex: For large hospitals"
+                            class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none"
+                            [ngClass]="{'border-red-500 bg-red-50': planForm.get('subtitle')?.touched && planForm.get('subtitle')?.invalid}">
+                    </div>
+
+                    <!-- Price Field -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-gray-700">Price <span
+                                class="text-red-500">*</span></label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium">$</span>
+                            <input type="number" formControlName="price"
+                                class="w-full pl-8 pr-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none"
+                                [ngClass]="{'border-red-500 bg-red-50': planForm.get('price')?.touched && planForm.get('price')?.invalid}">
+                        </div>
+                    </div>
+
+                    <!-- Duration Field -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-gray-700">Duration (Days) <span
+                                class="text-red-500">*</span></label>
+                        <input type="number" formControlName="duration"
+                            class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none"
+                            [ngClass]="{'border-red-500 bg-red-50': planForm.get('duration')?.touched && planForm.get('duration')?.invalid}">
+                    </div>
+                </div>
+
+                <!-- Features Section -->
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <label class="block text-sm font-semibold text-gray-700">Included Features <span
+                                class="text-red-500">*</span></label>
+                        <button type="button" (click)="addFeature()"
+                            class="text-xs font-bold text-indigo-600 hover:text-indigo-700 uppercase tracking-wider">
+                            + Add Feature
+                        </button>
+                    </div>
+
+                    <div formArrayName="features" class="space-y-3">
+                        <div *ngFor="let feature of features.controls; let i = index" class="flex items-center gap-2">
+                            <div class="flex-1">
+                                <input [formControlName]="i" type="text" placeholder="Feature description..."
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none"
+                                    [ngClass]="{'border-red-500': feature.touched && feature.invalid}">
+                            </div>
+                            <button type="button" (click)="removeFeature(i)" [disabled]="features.length <= 1"
+                                class="p-2 text-gray-400 hover:text-red-500 disabled:opacity-30">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="pt-6">
+                    <button type="submit" [disabled]="isLoading"
+                        class="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white font-bold py-3 px-6 rounded-lg transition-all duration-200 shadow-lg flex items-center justify-center gap-2 text-lg">
+                        <svg *ngIf="isLoading" class="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                            </circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
+                        </svg>
+                        {{isLoading ? (isEditMode ? 'Saving...' : 'Creating...') : (isEditMode ? 'Update Pricing Plan' :
+                        'Publish Pricing Plan')}}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

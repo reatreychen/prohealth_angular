@@ -1,151 +1,67 @@
-import { Component } from '@angular/core';
-import { NgForOf, NgIf, NgClass } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { NgForOf, NgIf, CommonModule } from '@angular/common';
+import { DepartmentService } from '../../../services/department.service';
+import { getApiUrl } from '../../utils/url.helper';
 
 interface DepartmentItem {
   id: string;
-  name: string;
-  nameLines: string[];
+  title: string;
+  description: string;
   icon: string;
-  iconAlt: string;
-  iconWidth: string;
-  iconHeight: string;
-  isEmpty?: boolean;
+  isFirst?: boolean;
 }
 
 @Component({
   selector: 'app-department',
-  imports: [NgForOf, NgIf, NgClass],
+  standalone: true,
+  imports: [NgForOf, NgIf, CommonModule],
   templateUrl: './department.html',
   styleUrl: './department.css',
 })
-export class Department {
-  brain: string = 'assets/brain.svg';
-  department: string = 'assets/department.svg';
-  emergency: string = 'assets/emer.svg';
-  heart: string = 'assets/heart.svg';
-  neuro: string = 'assets/neuro.svg';
-  obs: string = 'assets/obs.svg';
+export class Department implements OnInit {
+  departments: DepartmentItem[] = [];
+  isLoading = false;
 
-  departments: DepartmentItem[] = [
-    {
-      id: 'emergency',
-      name: 'Emergency',
-      nameLines: ['Emergency', 'Department'],
-      icon: 'assets/emer.svg',
-      iconAlt: 'emergency',
-      iconWidth: '70px',
-      iconHeight: '66px',
-      isEmpty: false
-    },
-    {
-      id: 'pediatric',
-      name: 'Pediatric',
-      nameLines: ['Pediatric', 'Department'],
-      icon: 'assets/department.svg',
-      iconAlt: 'department',
-      iconWidth: '89px',
-      iconHeight: '73px',
-      isEmpty: false
-    },
-    {
-      id: 'empty1',
-      name: '',
-      nameLines: [],
-      icon: '',
-      iconAlt: '',
-      iconWidth: '',
-      iconHeight: '',
-      isEmpty: true
-    },
-    {
-      id: 'empty2',
-      name: '',
-      nameLines: [],
-      icon: '',
-      iconAlt: '',
-      iconWidth: '',
-      iconHeight: '',
-      isEmpty: true
-    },
-    {
-      id: 'empty3',
-      name: '',
-      nameLines: [],
-      icon: '',
-      iconAlt: '',
-      iconWidth: '',
-      iconHeight: '',
-      isEmpty: true
-    },
-    {
-      id: 'obstetric',
-      name: 'Obstetric and Gynecology',
-      nameLines: ['Obstertric and', 'Gynecology', 'Department'],
-      icon: 'assets/obs.svg',
-      iconAlt: 'obs',
-      iconWidth: '73px',
-      iconHeight: '73px',
-      isEmpty: false
-    },
-    {
-      id: 'cardiology',
-      name: 'Cardiology',
-      nameLines: ['Cardiology', 'Department'],
-      icon: 'assets/heart.svg',
-      iconAlt: 'heart',
-      iconWidth: '60px',
-      iconHeight: '72px',
-      isEmpty: false
-    },
-    {
-      id: 'empty4',
-      name: '',
-      nameLines: [],
-      icon: '',
-      iconAlt: '',
-      iconWidth: '',
-      iconHeight: '',
-      isEmpty: true
-    },
-    {
-      id: 'empty5',
-      name: '',
-      nameLines: [],
-      icon: '',
-      iconAlt: '',
-      iconWidth: '',
-      iconHeight: '',
-      isEmpty: true
-    },
-    {
-      id: 'empty6',
-      name: '',
-      nameLines: [],
-      icon: '',
-      iconAlt: '',
-      iconWidth: '',
-      iconHeight: '',
-      isEmpty: true
-    },
-    {
-      id: 'psychiatry',
-      name: 'Psychiatry',
-      nameLines: ['Psychiatry', 'Department'],
-      icon: 'assets/brain.svg',
-      iconAlt: 'brain',
-      iconWidth: '63px',
-      iconHeight: '70px',
-      isEmpty: false
-    },
-    {
-      id: 'neurology',
-      name: 'Neurology',
-      nameLines: ['Neurology', 'Department'],
-      icon: 'assets/neuro.svg',
-      iconAlt: 'neuro',
-      iconWidth: '70px',
-      iconHeight: '72px',
-      isEmpty: false
-    }
-  ];
+  constructor(private departmentService: DepartmentService) { }
+
+  ngOnInit(): void {
+    this.fetchDepartments();
+  }
+
+  fetchDepartments(): void {
+    this.isLoading = true;
+    this.departmentService.getDepartments().subscribe({
+      next: (response: any) => {
+        this.isLoading = false;
+        const rawData = response.data || [];
+        this.departments = rawData.map((dept: any, index: number) => ({
+          id: dept.id,
+          title: dept.title,
+          description: dept.description || 'This department provides immediate medical care to patients with acute illnesses or injuries that require immediate attention.',
+          icon: this.getImageUrl(dept.image, dept.title),
+          isFirst: index === 0
+        }));
+      },
+      error: (err) => {
+        this.isLoading = false;
+        console.error('Error fetching departments:', err);
+      }
+    });
+  }
+
+  getImageUrl(images: any[] | string | undefined | null, title: string): string {
+    const url = getApiUrl(Array.isArray(images) ? images[0] : images);
+    return url || this.getIconForDepartment(title);
+  }
+
+  getIconForDepartment(title: string): string {
+    const t = title.toLowerCase();
+    if (t.includes('emergency')) return 'assets/emer.svg';
+    if (t.includes('pediatric')) return 'assets/department.svg';
+    if (t.includes('obstetric') || t.includes('gynecology')) return 'assets/obs.svg';
+    if (t.includes('cardiology')) return 'assets/heart.svg';
+    if (t.includes('neurology')) return 'assets/neuro.svg';
+    if (t.includes('psychiatry')) return 'assets/brain.svg';
+    return 'assets/department.svg'; // default
+  }
 }

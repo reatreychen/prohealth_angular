@@ -1,0 +1,81 @@
+<div class="p-6 bg-gray-50 min-h-screen">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900">Departments Management</h1>
+            <p class="text-gray-500 mt-1">Manage hospital departments and services</p>
+        </div>
+        <a routerLink="/admin/departments/new"
+            class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors duration-200 shadow-sm gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            Add New Department
+        </a>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead class="bg-gray-50 border-b border-gray-100">
+                    <tr>
+                        <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Image</th>
+                        <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Title</th>
+                        <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Description
+                        </th>
+                        <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Created At
+                        </th>
+                        <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider text-right">
+                            Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    <tr *ngIf="isLoading" class="animate-pulse">
+                        <td colspan="4" class="px-6 py-10 text-center text-gray-400">Loading departments...</td>
+                    </tr>
+                    <tr *ngIf="!isLoading && departments.length === 0">
+                        <td colspan="4" class="px-6 py-10 text-center text-gray-400">No departments found.</td>
+                    </tr>
+                    <tr *ngFor="let dept of departments" class="hover:bg-gray-50/50 transition-colors duration-200">
+                        <td class="px-6 py-4">
+                            <div
+                                class="h-10 w-10 rounded-lg overflow-hidden bg-gray-100 border border-gray-100 shadow-sm">
+                                <img [src]="getImageUrl(dept.image)" class="h-full w-full object-cover"
+                                    [alt]="dept.title">
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="font-medium text-gray-900">{{dept.title}}</div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="text-sm text-gray-600 truncate max-w-xs">{{dept.description || 'No
+                                description'}}</div>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-500">
+                            {{dept.createdAt | date:'mediumDate'}}
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex justify-end items-center gap-2">
+                                <button (click)="editDepartment(dept.id)"
+                                    class="p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all duration-200"
+                                    title="Edit">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                    </svg>
+                                </button>
+                                <button (click)="deleteDepartment(dept.id)"
+                                    class="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200"
+                                    title="Delete">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

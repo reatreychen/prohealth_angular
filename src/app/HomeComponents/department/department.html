@@ -1,34 +1,49 @@
-<section class="px-20 mt-20">
-    <div class=" flex items-center justify-between gap-20">
-        <!-- left side -->
-         <div class=" grid grid-cols-4 gap-4">
-            <div
-              *ngFor="let dept of departments"
-              [ngClass]="{
-                'bg-gradient-to-br from-[#c6e3ef] via-[#a2d0e4] to-[#8ec0f1] flex items-center justify-center flex-col gap-4 group hover:scale-105 hover:shadow-xl transition-all duration-300 cursor-pointer': !dept.isEmpty,
-                'bg-gray-50 block': dept.isEmpty
-              }"
-              class="w-[196px] h-[250px] px-[15px] py-[25px] rounded-[24px]"
-            >
-              <ng-container *ngIf="!dept.isEmpty">
-                <img
-                  [src]="dept.icon"
-                  [alt]="dept.iconAlt"
-                  class="object-contain group-hover:scale-110 transition-transform duration-300"
-                  [style.width]="dept.iconWidth"
-                  [style.height]="dept.iconHeight"
-                />
-                <div class=" text-[20px] text-white font-medium flex items-center justify-center flex-col group-hover:translate-y-[-4px] transition-transform duration-300">
-                  <p *ngFor="let line of dept.nameLines" class="group-hover:text-white transition-colors duration-300">{{ line }}</p>
-                </div>
-              </ng-container>
-            </div>
-         </div>
+<section class="max-w-[1440px] mx-auto px-6 py-24 bg-white">
+  <!-- Section Header -->
+  <div class="flex flex-col items-center justify-center text-center mb-16">
+    <p class="text-[20px] md:text-[26px] font-semibold text-[#307bc4] tracking-wide uppercase">OUR DEPARTMENTS</p>
+    <h2 class="text-[36px] md:text-[57px] font-bold text-[#274760] mt-2">Specialist Care for Your Health</h2>
+  </div>
 
-         <!-- right side -->
-          <div class=" flex flex-col">
-                <p class=" text-[26px] font-semibold text-[#307bc4]">OUR DEPARTMENT</p>
-                <p class=" text-[57px] font-semibold text-[#274760]">For Your Health</p>
-          </div> 
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="flex justify-center items-center py-20">
+    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-[#307bc4]"></div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!isLoading && departments.length === 0" class="text-center py-20">
+    <p class="text-gray-500 text-lg">No departments available at the moment.</p>
+  </div>
+
+  <!-- Department Grid -->
+  <div *ngIf="!isLoading && departments.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div *ngFor="let dept of departments"
+      class="group relative bg-white p-10 rounded-[28px] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_-15px_rgba(48,123,196,0.15)] border border-gray-100/50 flex flex-col min-h-[350px]">
+
+      <!-- Icon & Title Header -->
+      <div class="flex items-start gap-6 mb-6">
+        <div class="w-20 h-20 flex items-center justify-center flex-shrink-0">
+          <img [src]="dept.icon" [alt]="dept.title" class="w-full h-full object-contain" />
+        </div>
+        <h3 class="text-[28px] font-bold text-[#274760] leading-tight pt-2">{{ dept.title }}</h3>
+      </div>
+
+      <!-- Description Content -->
+      <div class="flex-grow">
+        <p class="text-[#7d91a0] text-[17px] leading-[1.6] line-clamp-3">
+          {{ dept.description }}
+        </p>
+      </div>
+
+      <!-- Corner Arrow Button -->
+      <div class="absolute bottom-0 right-0">
+        <div
+          class="w-16 h-14 bg-[#A5C5E8] rounded-tl-[16px] rounded-br-[28px] flex items-center justify-center transition-all duration-300 group-hover:bg-[#307bc4] group-hover:w-20">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>

@@ -1,0 +1,106 @@
+<div class="p-6 bg-gray-50 min-h-screen">
+    <div class="max-w-3xl mx-auto">
+        <!-- Header -->
+        <div class="flex items-center gap-4 mb-8">
+            <button routerLink="/admin/users"
+                class="p-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+            </button>
+            <div>
+                <h1 class="text-2xl font-bold text-gray-900">{{isEditMode ? 'Edit' : 'Add New'}} User</h1>
+                <p class="text-gray-500">System access and profile management</p>
+            </div>
+        </div>
+
+        <!-- Form Card -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="p-8 space-y-6">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Name Field -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-gray-700">Full Name <span
+                                class="text-red-500">*</span></label>
+                        <input type="text" formControlName="name" placeholder="John Doe"
+                            class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none"
+                            [ngClass]="{'border-red-500 bg-red-50': userForm.get('name')?.touched && userForm.get('name')?.invalid}">
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-gray-700">Email Address <span
+                                class="text-red-500">*</span></label>
+                        <input type="email" formControlName="email" placeholder="john@example.com"
+                            class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none"
+                            [ngClass]="{'border-red-500 bg-red-50': userForm.get('email')?.touched && userForm.get('email')?.invalid}">
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="space-y-2" *ngIf="!isEditMode">
+                        <label class="block text-sm font-semibold text-gray-700">Password <span
+                                class="text-red-500">*</span></label>
+                        <input type="password" formControlName="password" placeholder="••••••••"
+                            class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none"
+                            [ngClass]="{'border-red-500 bg-red-50': userForm.get('password')?.touched && userForm.get('password')?.invalid}">
+                    </div>
+
+                    <!-- Mobile Field -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-gray-700">Mobile Number</label>
+                        <input type="text" formControlName="mobile" placeholder="012345678"
+                            class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none">
+                    </div>
+
+                    <!-- Role Field -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-gray-700">User Role <span
+                                class="text-red-500">*</span></label>
+                        <select formControlName="role"
+                            class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none">
+                            <option value="USER">User (Standard)</option>
+                            <option value="ADMIN">Admin (Root)</option>
+                        </select>
+                    </div>
+
+                    <!-- Status Field -->
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-gray-700">Account Status <span
+                                class="text-red-500">*</span></label>
+                        <select formControlName="status"
+                            class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none">
+                            <option value="PENDING">Pending</option>
+                            <option value="PAID">Paid / Active</option>
+                            <option value="FAILED">Failed / Inactive</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Address Field -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold text-gray-700">Address Details</label>
+                    <textarea formControlName="address_detail" rows="3" placeholder="Street, City, Country..."
+                        class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="pt-4">
+                    <button type="submit" [disabled]="isLoading"
+                        class="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white font-bold py-3 px-6 rounded-lg transition-all duration-200 shadow-lg flex items-center justify-center gap-2">
+                        <svg *ngIf="isLoading" class="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                            </circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
+                        </svg>
+                        {{isLoading ? (isEditMode ? 'Updating...' : 'Creating...') : (isEditMode ? 'Save User Changes' :
+                        'Create User Account')}}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

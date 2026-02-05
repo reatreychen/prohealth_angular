@@ -3,21 +3,11 @@
   <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10">
     <h2 class="text-[32px] font-bold text-[#274760] mb-4 sm:mb-0">Book Appointment Now</h2>
     <button
-      class="book-now-btn w-[178px] h-[50px] flex items-center justify-center text-white py-3 px-6 rounded-full shadow-md transition ease-in-out text-[16px] duration-100"
-    >
+      class="book-now-btn w-[178px] h-[50px] flex items-center justify-center text-white py-3 px-6 rounded-full shadow-md transition ease-in-out text-[16px] duration-100">
       <span>Book Now</span>
       <!-- Right Arrow Icon -->
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="5" y1="12" x2="19" y2="12"></line>
         <polyline points="12 5 19 12 12 19"></polyline>
       </svg>
@@ -30,29 +20,16 @@
     <div *ngFor="let field of formFields" class="flex items-start space-x-4">
       <!-- Icon -->
       <div class="w-[70px] h-[70px] rounded-full bg-[#307bc4] flex items-center justify-center">
-        <img
-          [src]="field.icon"
-          [alt]="field.iconAlt"
-          class="object-cover"
-          [style.width]="field.iconWidth"
-          [style.height]="field.iconHeight"
-        />
+        <img [src]="field.icon" [alt]="field.iconAlt" class="object-cover" [style.width]="field.iconWidth"
+          [style.height]="field.iconHeight" />
       </div>
       <!-- Input/Select -->
       <div class="flex-1 min-w-0">
         <label [for]="field.id" class="block text-[16px] font-medium text-[#274760]">{{ field.label }}</label>
-        <input
-          *ngIf="field.type !== 'select'"
-          [type]="field.type"
-          [id]="field.id"
-          [value]="field.value"
-          class="w-full border-0 border-b-2 border-gray-200 p-1 focus:border-blue-500 focus:outline-none focus:ring-0 text-gray-400 placeholder-gray-400"
-        />
-        <select
-          *ngIf="field.type === 'select'"
-          [id]="field.id"
-          class="w-full border-0 border-b-2 border-gray-200 p-1 focus:border-blue-500 focus:outline-none focus:ring-0 text-gray-400 appearance-none bg-no-repeat bg-right"
-        >
+        <input *ngIf="field.type !== 'select'" [type]="field.type" [id]="field.id" [value]="field.value"
+          class="w-full border-0 border-b-2 border-gray-200 p-1 focus:border-blue-500 focus:outline-none focus:ring-0 text-gray-400 placeholder-gray-400" />
+        <select *ngIf="field.type === 'select'" [id]="field.id"
+          class="w-full border-0 border-b-2 border-gray-200 p-1 focus:border-blue-500 focus:outline-none focus:ring-0 text-gray-400 appearance-none bg-no-repeat bg-right">
           <option *ngFor="let option of field.options" [value]="option.value" [selected]="option.value === ''">
             {{ option.label }}
           </option>

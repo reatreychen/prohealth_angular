@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForOf} from '@angular/common';
-import {RouterLink} from '@angular/router';
-
+import { NgForOf, CommonModule, DatePipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { PostService } from '../../../services/post.service';
+import { getImageUrl } from '../../utils/url.helper';
 
 interface Blog {
+  id?: string;
   image: string;
   date: string;
   title: string;
@@ -11,93 +13,63 @@ interface Blog {
 
 @Component({
   selector: 'app-blog-card',
+  standalone: true,
   imports: [
     NgForOf,
-    RouterLink
+    RouterLink,
+    CommonModule
   ],
   templateUrl: './blog-card.html',
   styleUrl: './blog-card.css',
+  providers: [DatePipe]
 })
 export class BlogCard implements OnInit {
-    blog1 :string = 'assets/blog1.jpg'
-  allBlogs = [
-    {
-      image: 'assets/blog1.jpg',
-      date: 'May 19, 2025',
-      title: 'The Importance of Mental Health: Understanding and Managing Anxiety Disorders'
-    },
-    {
-      image: 'assets/blog2.jpg',
-      date: 'Jun 02, 2025',
-      title: 'How to Build Resilience: Practical Tips for Everyday Life'
-    },
-    {
-      image: 'assets/blog3.jpg',
-      date: 'Jul 10, 2025',
-      title: 'Healthy Habits for a Better Mind and Body'
-    },
-    {
-      image: 'assets/blog4.jpg',
-      date: 'May 19, 2025',
-      title: 'The Importance of Mental Health: Understanding and Managing Anxiety Disorders'
-    },
-    {
-      image: 'assets/blog2.jpg',
-      date: 'Jun 02, 2025',
-      title: 'How to Build Resilience: Practical Tips for Everyday Life'
-    },
-    {
-      image: 'assets/blog4.jpg',
-      date: 'Jul 10, 2025',
-      title: 'Healthy Habits for a Better Mind and Body'
-    },
-    {
-      image: 'assets/blog5.jpg',
-      date: 'May 19, 2025',
-      title: 'The Importance of Mental Health: Understanding and Managing Anxiety Disorders'
-    },
-    {
-      image: 'assets/blog6.jpg',
-      date: 'Jun 02, 2025',
-      title: 'How to Build Resilience: Practical Tips for Everyday Life'
-    },
-    {
-      image: 'assets/blog7.jpg',
-      date: 'Jul 10, 2025',
-      title: 'Healthy Habits for a Better Mind and Body'
-    },
-    {
-      image: 'assets/blog1.jpg',
-      date: 'May 19, 2025',
-      title: 'The Importance of Mental Health: Understanding and Managing Anxiety Disorders'
-    },
-    {
-      image: 'assets/blog2.jpg',
-      date: 'Jun 02, 2025',
-      title: 'How to Build Resilience: Practical Tips for Everyday Life'
-    },
-    {
-      image: 'assets/blog3.jpg',
-      date: 'Jul 10, 2025',
-      title: 'Healthy Habits for a Better Mind and Body'
-    }
-  ];
-
+  allBlogs: Blog[] = [];
   blogs: Blog[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 6;
   totalPages: number = 1;
   pageNumbers: number[] = [];
+  isLoading = false;
 
-  constructor() {}
+  constructor(
+    private postService: PostService,
+    private datePipe: DatePipe
+  ) { }
 
   ngOnInit(): void {
-    this.calculatePagination();
-    this.updateDisplayedBlogs();
+    this.fetchBlogs();
+  }
+
+  fetchBlogs(): void {
+    this.isLoading = true;
+    this.postService.getPosts().subscribe({
+      next: (response: any) => {
+        this.isLoading = false;
+        const rawPosts = response.data || [];
+        this.allBlogs = rawPosts.map((post: any) => ({
+          id: post.id,
+          title: post.title,
+          date: this.datePipe.transform(post.createdAt, 'MMM dd, yyyy') || '',
+          image: this.getImageUrl(post.image)
+        }));
+        this.calculatePagination();
+        this.updateDisplayedBlogs();
+      },
+      error: (err) => {
+        this.isLoading = false;
+        console.error('Error fetching blogs:', err);
+      }
+    });
+  }
+
+  getImageUrl(images: any[] | string | undefined | null): string {
+    return getImageUrl(images, 'assets/blog1.jpg');
   }
 
   calculatePagination(): void {
     this.totalPages = Math.ceil(this.allBlogs.length / this.itemsPerPage);
+    if (this.totalPages < 1) this.totalPages = 1;
     this.pageNumbers = Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
 

@@ -1,0 +1,54 @@
+<header
+    class="fixed top-0 left-0 w-full h-16 bg-[#1e1e2d] flex items-center justify-between px-4 z-50 text-white shadow-md">
+    <!-- Left Side: Logo + Hamburger -->
+    <div class="flex items-center gap-4 w-full sm:w-auto">
+        <!-- Logo -->
+        <div class="flex items-center gap-2 mr-8">
+            <div class="w-7 h-7 rounded-full border-2 border-white flex items-center justify-center">
+                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+            <span class="text-xl font-bold tracking-wide">ProHealth</span>
+        </div>
+
+        <!-- Hamburger (Toggle Sidebar) - Visible on all screens now if we want to toggle sidebar width? Or just mobile. The design has it always visible near logo. -->
+        <button (click)="toggleSidebar.emit()" class="text-gray-400 hover:text-white transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                </path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Right Side: User Profile -->
+    <div class="flex items-center gap-6">
+        <!-- Globe Icon -->
+        <button class="text-gray-400 hover:text-white hidden sm:block">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9">
+                </path>
+            </svg>
+        </button>
+
+        <!-- User Info -->
+        <div class="flex items-center gap-3">
+            <div class="text-right hidden sm:block">
+                <div class="text-xs text-gray-400">Welcome,</div>
+                <div class="text-sm font-semibold text-white">John Doe</div>
+            </div>
+
+            <!-- Power Button -->
+            <button
+                class="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5.636 5.636a9 9 0 1 0 12.728 0M12 3v9"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+</header>
