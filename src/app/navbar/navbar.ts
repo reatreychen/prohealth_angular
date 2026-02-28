@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterLink, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { CartService } from '../../services/cart.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -27,6 +28,7 @@ export class Navbar implements OnInit, OnDestroy {
   isMobileMenuOpen = false;
   user: any = null;
   userRole: 'USER' | 'ADMIN' = 'USER';
+  cartCount: number = 0;
 
   private routerSub!: Subscription;
   private authListener!: (event: any) => void;
@@ -34,7 +36,8 @@ export class Navbar implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private authService: AuthService
+    private authService: AuthService,
+    private cartService: CartService
   ) { }
 
   ngOnInit() {
@@ -63,6 +66,11 @@ export class Navbar implements OnInit, OnDestroy {
     };
 
     window.addEventListener('auth:changed', this.authListener as EventListener);
+
+    this.cartService.cartItems$.subscribe(items => {
+      this.cartCount = items.reduce((count, item) => count + item.quantity, 0);
+      this.cdr.detectChanges();
+    });
   }
 
   ngOnDestroy() {

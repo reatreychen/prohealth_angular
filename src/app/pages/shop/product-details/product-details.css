@@ -1,0 +1,114 @@
+.product-banner {
+    background: linear-gradient(135deg, #e6f3fa 0%, #ffffff 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.product-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background: radial-gradient(circle, rgba(30, 115, 190, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #64748b;
+}
+
+.breadcrumb-nav a {
+    transition: color 0.2s;
+}
+
+.breadcrumb-nav a:hover {
+    color: #1e73be;
+}
+
+.image-container {
+    background-color: #e6f3fa;
+    border-radius: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.thumbnail-box {
+    background-color: #e6f3fa;
+    border-radius: 0.75rem;
+    transition: all 0.2s ease;
+}
+
+.thumbnail-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.active-thumbnail {
+    box-shadow: 0 0 0 2px #1e73be;
+}
+
+.btn-add-cart {
+    background-color: #1e73be;
+    color: white;
+    border-radius: 9999px;
+    padding: 0.75rem 2.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(30, 115, 190, 0.3);
+}
+
+.btn-add-cart:hover {
+    background-color: #1a64a6;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(30, 115, 190, 0.4);
+}
+
+.quantity-control {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.quantity-control button {
+    padding: 0.5rem 0.75rem;
+    background-color: white;
+    transition: background-color 0.2s;
+}
+
+.quantity-control button:hover {
+    background-color: #f8fafc;
+}
+
+.quantity-control input {
+    width: 3rem;
+    text-align: center;
+    border: none;
+    font-weight: 500;
+}
+
+.star-rating {
+    display: flex;
+    color: #1e73be;
+}
+
+.product-title {
+    color: #203f66;
+    font-weight: 700;
+}
+
+.price-text {
+    color: #1e73be;
+    font-weight: 700;
+}
+
+.old-price {
+    color: #94a3b8;
+    text-decoration: line-through;
+    font-weight: 400;
+}

@@ -4,7 +4,9 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from '../../../services/product.service';
 import { CategoryService } from '../../../services/category.service';
+import { CartService } from '../../../services/cart.service';
 import { getImageUrl } from '../../utils/url.helper';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-shop',
@@ -27,7 +29,8 @@ export class ShopComponent implements OnInit {
 
     constructor(
         private productService: ProductService,
-        private categoryService: CategoryService
+        private categoryService: CategoryService,
+        private cartService: CartService
     ) { }
 
     ngOnInit(): void {
@@ -101,5 +104,18 @@ export class ShopComponent implements OnInit {
         return this.products.filter(p =>
             p.categories && p.categories.some((c: any) => c.name === categoryName)
         ).length;
+    }
+
+    addToCart(product: any): void {
+        this.cartService.addToCart(product, 1);
+        Swal.fire({
+            icon: 'success',
+            title: 'Added to cart!',
+            text: `${product.name} has been added to your cart.`,
+            showConfirmButton: false,
+            timer: 1500,
+            position: 'top-end',
+            toast: true
+        });
     }
 }

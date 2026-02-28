@@ -29,6 +29,7 @@ import { AddUserComponent } from './pages/admin-users/add-user/add-user';
 import { AllPricingPlansComponent } from './pages/admin-pricing/all-pricing-plans/all-pricing-plans';
 import { AddPricingPlanComponent } from './pages/admin-pricing/add-pricing-plan/add-pricing-plan';
 import { ShopComponent } from './pages/shop/shop';
+import { ProductDetailsComponent } from './pages/shop/product-details/product-details';
 import { PricingPlan } from './pages/pricing-plan/pricing-plan';
 
 export const routes: Routes = [
@@ -46,6 +47,8 @@ export const routes: Routes = [
       { path: 'login', component: Login },
       { path: 'register', component: Register },
       { path: 'shop', component: ShopComponent },
+      { path: 'shop/:id', component: ProductDetailsComponent },
+      { path: 'cart', loadComponent: () => import('./pages/shop/cart/cart.component').then(m => m.CartComponent) },
       { path: 'pricing-plan', component: PricingPlan },
     ],
   },
