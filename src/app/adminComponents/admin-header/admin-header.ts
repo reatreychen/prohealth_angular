@@ -1,8 +1,9 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-admin-header',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './admin-header.html',
   styleUrl: './admin-header.css',
 })

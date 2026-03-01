@@ -1,9 +1,8 @@
 <header
     class="fixed top-0 left-0 w-full h-16 bg-[#1e1e2d] flex items-center justify-between px-4 z-50 text-white shadow-md">
-    <!-- Left Side: Logo + Hamburger -->
     <div class="flex items-center gap-4 w-full sm:w-auto">
         <!-- Logo -->
-        <div class="flex items-center gap-2 mr-8">
+        <a routerLink="/" class="flex items-center gap-2 mr-8 cursor-pointer transition-transform hover:scale-105">
             <div class="w-7 h-7 rounded-full border-2 border-white flex items-center justify-center">
                 <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd"
@@ -12,9 +11,8 @@
                 </svg>
             </div>
             <span class="text-xl font-bold tracking-wide">ProHealth</span>
-        </div>
+        </a>
 
-        <!-- Hamburger (Toggle Sidebar) - Visible on all screens now if we want to toggle sidebar width? Or just mobile. The design has it always visible near logo. -->
         <button (click)="toggleSidebar.emit()" class="text-gray-400 hover:text-white transition-colors">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
@@ -38,7 +36,7 @@
         <div class="flex items-center gap-3">
             <div class="text-right hidden sm:block">
                 <div class="text-xs text-gray-400">Welcome,</div>
-                <div class="text-sm font-semibold text-white">John Doe</div>
+                <div class="text-sm font-semibold text-white">Chen Reatrey</div>
             </div>
 
             <!-- Power Button -->
