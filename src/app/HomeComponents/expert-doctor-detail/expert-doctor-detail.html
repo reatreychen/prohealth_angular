@@ -11,16 +11,16 @@
     </div>
 
     <div *ngIf="!isLoading" class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 mt-16">
-      <div *ngFor="let doctor of doctors" class="group transition-all duration-300">
+      <div *ngFor="let doctor of doctors" class="group flex flex-col h-full transition-all duration-300">
         <div
           class="relative w-full aspect-square overflow-hidden rounded-t-[28px] bg-gradient-to-tr from-[#f1f8fb] to-[#e6f1fb]">
           <img [src]="doctor.image" [alt]="doctor.name"
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
         </div>
         <div
-          class="bg-white p-8 md:p-10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] group-hover:shadow-[0_20px_50px_-15px_rgba(48,123,196,0.1)] transition-all rounded-b-[28px] text-center">
-          <article class="flex flex-col items-center justify-center">
-            <h1 class="text-[24px] md:text-[32px] text-[#274760] font-bold">{{ doctor.name }}</h1>
+          class="bg-white p-8 md:p-10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] group-hover:shadow-[0_20px_50px_-15px_rgba(48,123,196,0.1)] transition-all rounded-b-[28px] text-center flex flex-col flex-grow">
+          <article class="flex flex-col items-center justify-start flex-grow">
+            <h1 class="text-[24px] md:text-[32px] text-[#274760] font-bold leading-tight">{{ doctor.name }}</h1>
             <h2 class="text-[18px] md:text-[20px] text-[#307bc4] font-medium mt-1 pb-3">{{ doctor.title }}</h2>
             <p class="text-[16px] text-[#7d91a0] leading-relaxed line-clamp-3">
               {{ doctor.description }}
@@ -28,7 +28,7 @@
           </article>
 
           <!-- social media -->
-          <div class="flex justify-center items-center gap-4 pt-8">
+          <div class="flex justify-center items-center gap-4 pt-8 mt-auto">
             <div
               class="p-3 cursor-pointer rounded-full bg-[#307bc41a] text-[#307bc4] hover:bg-[#307bc4] hover:text-white transition-all duration-300">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">

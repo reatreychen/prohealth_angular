@@ -1,36 +1,37 @@
-<section class="h-[1100px]">
-  <div class="h-[815px] relative" [ngStyle]="{ 'background-image': 'url(' + bannerbackground + ')' }"
+<section class="relative min-h-screen lg:h-[1100px] overflow-hidden">
+  <!-- Background with overlay for better text readability on mobile if needed -->
+  <div class="h-[600px] md:h-[815px] relative" [ngStyle]="{ 'background-image': 'url(' + bannerbackground + ')' }"
     style="background-size: cover; background-position: center">
-    <div class="px-28 flex">
+    
+    <div class="container mx-auto px-6 md:px-12 lg:px-28 flex flex-col lg:flex-row">
       <!-- left side -->
-      <div class="w-[750px] pt-60 absolute">
-        <div class="text-7xl text-[#274760] font-bold flex flex-col gap-1">
+      <div class="w-full lg:w-1/2 pt-20 md:pt-40 lg:pt-60 z-10">
+        <div class="text-4xl md:text-6xl lg:text-7xl text-[#274760] font-bold flex flex-col gap-1">
           <h1 class="">Making Health Easy</h1>
           <h1>and Accessible</h1>
         </div>
 
-        <div class="w-[540px] h-[90px] pt-14">
-          <p class="text-white text-[20px] font-medium">
+        <div class="w-full max-w-[540px] pt-8 md:pt-14">
+          <p class="text-white text-lg md:text-[20px] font-medium leading-relaxed">
             At Prohealth, we prioritize our patient's health and well-being, and we strive to
             provide compassionate care with exceptional results.
           </p>
         </div>
 
         <!-- doctor card -->
-
         <div
-          class=" mt-[230px] w-[385px] h-[200px] bg-gradient-to-br from-[#8cbff1] to-[#bbdcf0] rounded-3xl shadow-xl p-8">
+          class="mt-10 lg:mt-[230px] w-full max-w-[385px] bg-gradient-to-br from-[#8cbff1] to-[#bbdcf0] rounded-3xl shadow-xl p-6 md:p-8">
           <!-- Top Section: Profile Info -->
-          <div class="flex items-center gap-4 w-[320px] h-[63px]">
+          <div class="flex items-center gap-4">
             <!-- Profile Image -->
-            <div class=" w-[63px] h-[63px]">
+            <div class="w-16 h-16 flex-shrink-0">
               <img [src]="profile" class="w-full h-full rounded-full object-cover" />
             </div>
 
             <!-- Name and Specialty -->
-            <div class="w-full">
-              <h2 class=" text-[22px] text-white font-semibold">Dr. Michele Amber, MD</h2>
-              <p class="text-[16px] text-white font-normal">Cardiologist</p>
+            <div class="overflow-hidden">
+              <h2 class="text-xl md:text-[22px] text-white font-semibold truncate">Dr. Michele Amber, MD</h2>
+              <p class="text-base text-white font-normal">Cardiologist</p>
             </div>
           </div>
 
@@ -38,7 +39,6 @@
           <div class="space-y-4 pt-6">
             <!-- Days -->
             <div class="flex items-center space-x-3">
-              <!-- lucide:calendar -->
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="w-6 h-6 text-blue-600 flex-shrink-0">
@@ -47,40 +47,43 @@
                 <line x1="8" x2="8" y1="2" y2="6"></line>
                 <line x1="3" x2="21" y1="10" y2="10"></line>
               </svg>
-              <p class="text-[16px] text-white">
+              <p class="text-base text-white">
                 Days:
-                <span class=" text-[16px] text-white font-semibold">Monday - Thursday</span>
+                <span class="font-semibold">Monday - Thursday</span>
               </p>
             </div>
 
             <!-- Hours -->
             <div class="flex items-center space-x-3">
-              <!-- lucide:clock -->
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="w-6 h-6 text-blue-600 flex-shrink-0">
                 <circle cx="12" cy="12" r="10"></circle>
                 <polyline points="12 6 12 12 16 14"></polyline>
               </svg>
-              <p class="text-[16px] text-white">
-                Days:
-                <span class="text-[16px] text-white font-semibold">Monday - Thursday</span>
+              <p class="text-base text-white">
+                Hours:
+                <span class="font-semibold">09:00 AM - 05:00 PM</span>
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      <!--righ side  -->
-      <div class="absolute right-0 pr-28">
-        <!-- image -->
-        <div class="w-[800px] h-[1100px] pt-40">
-          <img [src]="doctor" alt="doctor" class="w-full h-full object-cover" />
-          <img [src]="total" alt="total patient" class="absolute top-[380px] left-[120px] total-patient-animation" />
-          <img [src]="heart" alt="heart" class="absolute top-[200px] right-[120px] heart-animation" />
-          <img [src]="open_hours" alt="open hours" class="absolute bottom-[330px] right-[100px] open-animation" />
+      <!-- right side -->
+      <div class="w-full lg:w-1/2 lg:absolute lg:right-0 lg:top-0 lg:h-full pr-0 lg:pr-28 mt-10 lg:mt-0 flex justify-center lg:block">
+        <div class="relative w-full max-w-[600px] lg:max-w-[800px] lg:h-[1100px] pt-10 lg:pt-40">
+          <img [src]="doctor" alt="doctor" class="w-full h-auto lg:h-full lg:object-cover" />
+          
+          <!-- Animated elements - hidden or scaled on smaller screens -->
+          <img [src]="total" alt="total patient" 
+            class="absolute top-[30%] left-[5%] md:left-[10%] lg:top-[380px] lg:left-[120px] w-24 md:w-auto total-patient-animation" />
+          <img [src]="heart" alt="heart" 
+            class="absolute top-[15%] right-[5%] md:right-[10%] lg:top-[200px] lg:right-[120px] w-16 md:w-auto heart-animation" />
+          <img [src]="open_hours" alt="open hours" 
+            class="absolute bottom-[20%] right-[5%] md:right-[10%] lg:bottom-[330px] lg:right-[100px] w-24 md:w-auto open-animation" />
         </div>
       </div>
     </div>
   </div>
-</section>
+</section>

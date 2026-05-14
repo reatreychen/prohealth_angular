@@ -1,5 +1,5 @@
-<section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-200 py-20 px-5">
-    <div class=" max-w-[1400px] mx-auto">
+<section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-200 py-16 md:py-20 px-4 md:px-6">
+    <div class="max-w-[1400px] mx-auto w-full">
 
         <!-- Loading State -->
         <div *ngIf="loading" class="flex flex-col items-center justify-center py-16 gap-5">
@@ -17,22 +17,22 @@
         </div>
 
         <!-- Pricing Cards -->
-        <div *ngIf="!loading && !error" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div *ngIf="!loading && !error" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-8 lg:gap-10">
             <div *ngFor="let plan of pricingPlans; let i = index"
                 class="bg-white rounded-[20px] shadow-xl overflow-hidden flex flex-col relative transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#307bc4]/10"
-                [class.transform]="plan.subtitle === 'Popular'" [class.scale-105]="plan.subtitle === 'Popular'"
-                [class.z-10]="plan.subtitle === 'Popular'" [style.animation-delay.ms]="i * 100">
+                [class.lg:scale-105]="plan.subtitle === 'Popular'"
+                [class.z-10]="plan.subtitle === 'Popular' && !loading && !error" 
+                [style.animation-delay.ms]="i * 100">
 
                 <!-- Card Header -->
-                <div class="bg-[#307bc4] w-[416px] h-[220px] p-[40px] text-center flex flex-col items-center">
+                <div class="bg-[#307bc4] w-full min-h-[220px] p-8 md:p-10 text-center flex flex-col items-center justify-center">
 
                     <!-- Plan Name & Popular Badge Container -->
                     <div class="inline-flex items-center justify-center relative mb-7">
                         <!-- Plan Name Pill -->
-                        <h3 class="z-20 m-0 text-[22px] font-semibold text-white py-2 px-6 border border-white/60 rounded-full bg-[#307bc4] lg:bg-transparent"
+                        <h3 class="z-20 m-0 text-xl md:text-[22px] font-semibold text-white py-2 px-6 border border-white/60 rounded-full bg-[#307bc4] lg:bg-transparent"
                             [class.rounded-r-none]="plan.subtitle === 'Popular'"
-                            [class.border-r-0]="plan.subtitle === 'Popular'"
-                            [class.bg-white_10]="plan.subtitle === 'Popular'">
+                            [class.border-r-0]="plan.subtitle === 'Popular'">
                             {{ plan.name }}
                         </h3>
 
@@ -45,17 +45,17 @@
 
                     <!-- Price -->
                     <div class="flex items-baseline justify-center gap-1 mt-2">
-                        <span class="text-4xl font-bold text-white">{{ plan.currency === 'USD' ? '$' : plan.currency
+                        <span class="text-3xl md:text-4xl font-bold text-white">{{ plan.currency === 'USD' ? '$' : plan.currency
                             }}</span>
-                        <span class="text-6xl font-extrabold text-white tracking-tighter leading-none">{{ plan.price
+                        <span class="text-5xl md:text-6xl font-extrabold text-white tracking-tighter leading-none">{{ plan.price
                             }}</span>
-                        <span class="text-lg font-medium text-white/80">/{{ plan.duration === 1 ? 'month' :
+                        <span class="text-base md:text-lg font-medium text-white/80">/{{ plan.duration === 1 ? 'month' :
                             plan.duration + ' Days' }}</span>
                     </div>
                 </div>
 
                 <!-- Card Body -->
-                <div class="p-8 pb-10 pt-16 flex-grow bg-white h-[471px]">
+                <div class="p-8 md:p-10 flex-grow bg-white">
                     <ul class="space-y-4">
                         <li *ngFor="let feature of plan.features" class="flex items-start gap-4">
                             <!-- Check Icon -->
@@ -65,7 +65,7 @@
                                 <path d="M8 12L11 15L16 9" stroke="white" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" />
                             </svg>
-                            <span class="text-[20px] font-normal text-[#274760] leading-relaxed">{{ feature }}</span>
+                            <span class="text-lg md:text-[20px] font-normal text-[#274760] leading-relaxed">{{ feature }}</span>
                         </li>
                     </ul>
                 </div>
@@ -73,7 +73,7 @@
                 <!-- Card Footer -->
                 <div class="px-8 pb-10 bg-white">
                     <button
-                        class="w-full py-3 px-8 bg-[#205282] text-white rounded-[28px] font-normal text-lg flex items-center justify-center gap-2 hover:bg-[#183d61] transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 group">
+                        class="w-full py-4 px-8 bg-[#205282] text-white rounded-[28px] font-normal text-lg flex items-center justify-center gap-2 hover:bg-[#183d61] transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 group">
                         <span>Get Started</span>
                         <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
                             viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,4 +85,4 @@
             </div>
         </div>
     </div>
-</section>
+</section>

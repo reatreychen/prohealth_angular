@@ -3,7 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../../../services/cart.service';
+import { OrderService } from '../../../../services/order.service';
+import { AuthService } from '../../../../services/auth.service';
 import { getImageUrl } from '../../../utils/url.helper';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-cart',
@@ -18,7 +22,12 @@ export class CartComponent implements OnInit {
     total: number = 0;
     couponCode: string = '';
 
-    constructor(private cartService: CartService) { }
+    constructor(
+        private cartService: CartService,
+        private orderService: OrderService,
+        private authService: AuthService,
+        private router: Router
+    ) { }
 
     ngOnInit(): void {
         this.cartService.cartItems$.subscribe(items => {
@@ -56,7 +65,65 @@ export class CartComponent implements OnInit {
     }
 
     proceedToCheckout(): void {
-        console.log('Proceeding to checkout');
-        // Navigate to checkout or implement order creation
+        const user = this.authService.getUser();
+        if (!user) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Please log in',
+                text: 'You must be logged in to proceed to checkout.',
+            });
+            this.router.navigate(['/Auth/Login']);
+            return;
+        }
+
+        if (this.cartItems.length === 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Cart is empty',
+                text: 'Please add items to your cart before checking out.',
+            });
+            return;
+        }
+
+        const orderData = {
+            userId: user.id,
+            items: this.cartItems.map(item => ({
+                productId: item.id,
+                quantity: item.quantity
+            }))
+        };
+
+        Swal.fire({
+            title: 'Processing Order...',
+            text: 'Please wait while we create your order.',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        this.orderService.createOrder(orderData).subscribe({
+            next: (res: any) => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Thank you!',
+                    text: 'Your order has been placed successfully.',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    position: 'top-end',
+                    toast: true
+                });
+                this.cartService.clearCart();
+                this.router.navigate(['/Home']);
+            },
+            error: (err) => {
+                console.error('Order creation failed:', err);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Order Failed',
+                    text: err.error?.message || 'Something went wrong while placing your order. Please try again.',
+                });
+            }
+        });
     }
 }

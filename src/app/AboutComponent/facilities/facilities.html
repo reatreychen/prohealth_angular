@@ -1,146 +1,132 @@
-<section class="px-20 py-24 bg-white">
+<section class="px-6 md:px-12 lg:px-20 py-16 md:py-24 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="mb-12 md:mb-16">
+      <p class="text-xl md:text-[26px] font-semibold text-[#307bc4] tracking-wide">HAVE A LOOK AT</p>
+      <h2 class="text-3xl md:text-5xl lg:text-[56px] font-semibold text-[#274760] leading-tight pt-3 max-w-2xl">
+        Our Facilities and Latest Activities
+      </h2>
+    </div>
 
-  <div class=" flex items-center gap-9">
-    <div>
-      <div class="w-[856px] h-[263px]">
-        <p class=" text-[26px] font-semibold text-[#307bc4]">HAVE A LOOK AT</p>
-        <p class=" text-[56px] w-[500px] font-semibold text-[#274760] leading-[70px] pt-3">Our Facilities and
-          Latest Activities</p>
-      </div>
-      <div class="flex items-center gap-9">
+    <!-- Main Grid Container -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-9">
+      
+      <!-- Left & Center Area (Desktop) / Top Area (Mobile) -->
+      <div class="lg:col-span-2 flex flex-col gap-6 md:gap-9">
+        <!-- Two square items top left -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-9">
+          <div
+            *ngFor="let facility of getLeftColumnFacilities()"
+            class="relative rounded-[28px] overflow-hidden cursor-pointer aspect-square shadow-sm"
+            (mouseenter)="onMouseEnter(facility.id)"
+            (mouseleave)="onMouseLeave()"
+          >
+            <img
+              [src]="facility.image"
+              [alt]="facility.alt"
+              class="w-full h-full object-cover transition-transform duration-500"
+              [class.scale-110]="isHovered(facility.id)"
+            />
+            <div
+              *ngIf="isHovered(facility.id)"
+              class="absolute inset-0 bg-[#307bc4]/30 transition-opacity duration-300"
+            ></div>
+            <button
+              *ngIf="isHovered(facility.id)"
+              class="absolute bottom-6 right-6 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+            >
+              <svg class="w-6 h-6 text-[#307bc4]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Wide bottom item -->
         <div
-          *ngFor="let facility of getLeftColumnFacilities()"
-          class="relative rounded-[28px] overflow-hidden cursor-pointer"
-          [style.width]="facility.width"
-          [style.height]="facility.height"
+          *ngFor="let facility of [facilities[3]]"
+          class="relative rounded-[28px] overflow-hidden cursor-pointer aspect-[2/1] md:aspect-auto md:h-[429px] shadow-sm"
           (mouseenter)="onMouseEnter(facility.id)"
           (mouseleave)="onMouseLeave()"
         >
-          <!-- Base Image -->
           <img
             [src]="facility.image"
             [alt]="facility.alt"
-            class="w-full h-full object-cover transition-transform duration-300"
+            class="w-full h-full object-cover transition-transform duration-500"
             [class.scale-110]="isHovered(facility.id)"
           />
-
-          <!-- Overlay - appears on hover -->
           <div
             *ngIf="isHovered(facility.id)"
-            class="absolute inset-0 bg-[#307bc4] opacity-30 transition-opacity duration-300"
+            class="absolute inset-0 bg-[#307bc4]/30 transition-opacity duration-300"
           ></div>
-
-          <!-- Icon Button - appears on hover -->
           <button
             *ngIf="isHovered(facility.id)"
             class="absolute bottom-6 right-6 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
           >
-            <svg
-              class="w-6 h-6 text-[#307bc4]"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 4v16m8-8H4"
-              ></path>
+            <svg class="w-6 h-6 text-[#307bc4]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Column (Desktop) / Bottom Area (Mobile) -->
+      <div class="flex flex-col gap-6 md:gap-9">
+        <!-- Tall item top right -->
+        <div
+          *ngIf="getRightColumnFacility() as facility"
+          class="relative rounded-[28px] overflow-hidden cursor-pointer aspect-[3/4] lg:h-[716px] shadow-sm"
+          (mouseenter)="onMouseEnter(facility.id)"
+          (mouseleave)="onMouseLeave()"
+        >
+          <img
+            [src]="facility.image"
+            [alt]="facility.alt"
+            class="w-full h-full object-cover transition-transform duration-500"
+            [class.scale-110]="isHovered(facility.id)"
+          />
+          <div
+            *ngIf="isHovered(facility.id)"
+            class="absolute inset-0 bg-[#307bc4]/30 transition-opacity duration-300"
+          ></div>
+          <button
+            *ngIf="isHovered(facility.id)"
+            class="absolute bottom-6 right-6 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+          >
+            <svg class="w-6 h-6 text-[#307bc4]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Square item bottom right -->
+        <div
+          *ngFor="let facility of [facilities[4]]"
+          class="relative rounded-[28px] overflow-hidden cursor-pointer aspect-square shadow-sm"
+          (mouseenter)="onMouseEnter(facility.id)"
+          (mouseleave)="onMouseLeave()"
+        >
+          <img
+            [src]="facility.image"
+            [alt]="facility.alt"
+            class="w-full h-full object-cover transition-transform duration-500"
+            [class.scale-110]="isHovered(facility.id)"
+          />
+          <div
+            *ngIf="isHovered(facility.id)"
+            class="absolute inset-0 bg-[#307bc4]/30 transition-opacity duration-300"
+          ></div>
+          <button
+            *ngIf="isHovered(facility.id)"
+            class="absolute bottom-6 right-6 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+          >
+            <svg class="w-6 h-6 text-[#307bc4]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
             </svg>
           </button>
         </div>
       </div>
     </div>
-
-    <div
-      *ngIf="getRightColumnFacility()"
-      class="relative rounded-[28px] overflow-hidden cursor-pointer"
-      [style.width]="getRightColumnFacility()!.width"
-      [style.height]="getRightColumnFacility()!.height"
-      (mouseenter)="onMouseEnter(getRightColumnFacility()!.id)"
-      (mouseleave)="onMouseLeave()"
-    >
-      <img
-        [src]="getRightColumnFacility()!.image"
-        [alt]="getRightColumnFacility()!.alt"
-        class="w-full h-full object-cover transition-transform duration-300"
-        [class.scale-110]="isHovered(getRightColumnFacility()!.id)"
-      />
-      
-      <!-- Overlay - appears on hover -->
-      <div
-        *ngIf="isHovered(getRightColumnFacility()!.id)"
-        class="absolute inset-0 bg-[#307bc4] opacity-30 transition-opacity duration-300"
-      ></div>
-
-      <!-- Icon Button - appears on hover -->
-      <button
-        *ngIf="isHovered(getRightColumnFacility()!.id)"
-        class="absolute bottom-6 right-6 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-      >
-        <svg
-          class="w-6 h-6 text-[#307bc4]"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M12 4v16m8-8H4"
-          ></path>
-        </svg>
-      </button>
-    </div>
   </div>
-
-
-  <div class=" flex items-center gap-9">
-    <div
-      *ngFor="let facility of getBottomRowFacilities()"
-      class="relative rounded-[28px] overflow-hidden cursor-pointer"
-      [class.pt-6]="true"
-      [style.width]="facility.width"
-      [style.height]="facility.height"
-      (mouseenter)="onMouseEnter(facility.id)"
-      (mouseleave)="onMouseLeave()"
-    >
-      <img
-        [src]="facility.image"
-        [alt]="facility.alt"
-        class="w-full h-full object-cover transition-transform duration-300"
-        [class.scale-110]="isHovered(facility.id)"
-      />
-      
-      <!-- Overlay - appears on hover -->
-      <div
-        *ngIf="isHovered(facility.id)"
-        class="absolute inset-0 bg-[#307bc4] opacity-30 transition-opacity duration-300"
-      ></div>
-
-      <!-- Icon Button - appears on hover -->
-      <button
-        *ngIf="isHovered(facility.id)"
-        class="absolute bottom-6 right-6 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-      >
-        <svg
-          class="w-6 h-6 text-[#307bc4]"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M12 4v16m8-8H4"
-          ></path>
-        </svg>
-      </button>
-    </div>
-  </div>
-
-
 </section>
+

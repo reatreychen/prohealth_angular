@@ -1,19 +1,22 @@
 <section>
-    <div class="h-[685px]" [ngStyle]="{ 'background-image': 'url(' + background + ')' }"
+    <div class="min-h-[500px] md:h-[685px] relative pt-[80px] md:pt-[100px]" [ngStyle]="{ 'background-image': 'url(' + background + ')' }"
         style="background-size: cover; background-position: center">
-        <div class="flex items-center justify-center gap-10">
+        <div class="container mx-auto px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-between py-10 lg:py-0 min-h-full gap-10">
             <!-- left side -->
-            <div class="pt-32 w-fit ">
-                <img [src]="banner_pricing" alt="about" class="w-full h-full object-cover">
+            <div class="w-full lg:w-1/2 order-2 lg:order-1 flex justify-center lg:justify-start mt-10 lg:mt-0">
+                <img [src]="banner_pricing" alt="pricing plan" class="w-full max-w-[550px] h-auto object-contain">
             </div>
 
-            <!--right side  -->
-            <div class=" flex flex-col gap-2 w-[550px] h-[192px]">
-                <h1 class=" text-[#274760] text-[56px] font-semibold leading-[70px]">
-                    Find the Right Plan
-                    for You</h1>
-                <p class="text-[#274760] text-[20px] font-normal pt-4">Explore Our Membership Options and Start Your Journey to Better Health</p>
+            <!-- right side -->
+            <div class="w-full lg:w-1/2 order-1 lg:order-2 flex flex-col gap-4 text-center lg:text-left">
+                <h1 class="text-[#274760] text-3xl md:text-5xl lg:text-[56px] font-semibold lg:leading-[70px]">
+                    Find the Right Plan for You
+                </h1>
+                <p class="text-[#274760] text-lg md:text-[20px] font-normal pt-4">
+                    Explore Our Membership Options and Start Your Journey to Better Health
+                </p>
             </div>
         </div>
     </div>
 </section>
+

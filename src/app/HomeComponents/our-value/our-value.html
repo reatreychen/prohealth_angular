@@ -1,16 +1,16 @@
-<section class="relative py-20 overflow-hidden mt-36">
+<section class="relative py-20 overflow-hidden mt-20 md:mt-36">
     <!-- Background - only on right side with cards -->
-    <div class="absolute top-0 right-0 w-[983px] h-[350px] bg-gradient-to-br from-[#dceef7] via-[#e5f3f9] to-[#d8edf7] rounded-l-[28px]"></div>
+    <div class="absolute top-0 right-0 w-full lg:w-[80%] h-[500px] lg:h-[350px] bg-gradient-to-br from-[#dceef7] via-[#e5f3f9] to-[#d8edf7] rounded-l-[28px]"></div>
     
-    <div class="relative max-w-full mx-auto pl-4 md:pl-8 lg:pl-24">
-      <div class="flex flex-col lg:flex-row lg:items-start gap-8">
+    <div class="relative max-w-full mx-auto px-6 md:px-12 lg:pl-24 lg:pr-0">
+      <div class="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-0">
         
         <!-- Left Side: Title and Arrows -->
-        <div class="lg:w-[30%] flex-shrink-0 flex flex-col justify-between lg:min-h-[400px] -mt-24">
-          <h2 class="text-[56px] md:text-[56px] lg:text-[56px] font-bold text-[#274760] mb-8 lg:mb-0">Our Values</h2>
+        <div class="lg:w-[30%] flex-shrink-0 flex flex-col justify-between lg:min-h-[400px] lg:-mt-24">
+          <h2 class="text-4xl md:text-5xl lg:text-[56px] font-bold text-[#274760] mb-8 lg:mb-0">Our Values</h2>
           
           <!-- Navigation Arrows - Bottom Left on Desktop -->
-          <div class="flex gap-3">
+          <div class="flex gap-3 mt-4 lg:mt-0">
             <button 
               (click)="previousSlide()" 
               class="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-[#5eb3d6] text-[#5eb3d6] flex items-center justify-center hover:bg-[#5eb3d6] hover:text-white transition-all duration-300 bg-transparent">
@@ -29,14 +29,14 @@
         </div>
   
         <!-- Right Side: Carousel with Cards -->
-        <div class="flex-1 pl-6">
-          <div class="relative overflow-hidden">
+        <div class="flex-1 lg:pl-6 overflow-hidden">
+          <div class="relative">
             <div 
             class="flex transition-transform duration-500 ease-in-out -mx-3"
             [style.transform]="getTransform()">
               
               <!-- Value Card 1: Compassion -->
-              <div class="flex-shrink-0 w-[370px] md:w-[370px] lg:w-[370px] h-[470px] md:h-[470px] lg:h-[470px] px-3">
+              <div class="flex-shrink-0 w-full max-w-[370px] h-[470px] px-3">
                 <div class="bg-white rounded-[25px] p-8 lg:p-10 h-full flex flex-col items-center text-center shadow-sm">
                   <div class="w-24 h-24 lg:w-28 lg:h-28 rounded-full border-2 border-[#5eb3d6] flex items-center justify-center mb-6 lg:mb-8">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 lg:h-14 lg:w-14 text-[#5eb3d6]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -52,7 +52,7 @@
               </div>
   
               <!-- Value Card 2: Excellence -->
-              <div class="flex-shrink-0 w-[370px] md:w-[370px] lg:w-[370px] h-[470px] md:h-[470px] lg:h-[470px] px-3">
+              <div class="flex-shrink-0 w-full max-w-[370px] h-[470px] px-3">
                 <div class="bg-white rounded-[25px] p-8 lg:p-10 h-full flex flex-col items-center text-center shadow-sm">
                   <div class="w-24 h-24 lg:w-28 lg:h-28 rounded-full border-2 border-[#5eb3d6] flex items-center justify-center mb-6 lg:mb-8">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 lg:h-14 lg:w-14 text-[#5eb3d6]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -67,7 +67,7 @@
               </div>
   
               <!-- Value Card 3: Integrity -->
-              <div class="flex-shrink-0 w-[370px] md:w-[370px] lg:w-[370px] h-[470px] md:h-[470px] lg:h-[470px] px-3">
+              <div class="flex-shrink-0 w-full max-w-[370px] h-[470px] px-3">
                 <div class="bg-white rounded-[25px] p-8 lg:p-10 h-full flex flex-col items-center text-center shadow-sm">
                   <div class="w-24 h-24 lg:w-28 lg:h-28 rounded-full border-2 border-[#5eb3d6] flex items-center justify-center mb-6 lg:mb-8">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 lg:h-14 lg:w-14 text-[#5eb3d6]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -82,7 +82,7 @@
               </div>
   
               <!-- Value Card 4: Respect -->
-              <div class="flex-shrink-0 w-[370px] md:w-[370px] lg:w-[370px] h-[470px] md:h-[470px] lg:h-[470px] px-3">
+              <div class="flex-shrink-0 w-full max-w-[370px] h-[470px] px-3">
                 <div class="bg-white rounded-[25px] p-8 lg:p-10 h-full flex flex-col items-center text-center shadow-sm">
                   <div class="w-24 h-24 lg:w-28 lg:h-28 rounded-full border-2 border-[#5eb3d6] flex items-center justify-center mb-6 lg:mb-8">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 lg:h-14 lg:w-14 text-[#5eb3d6]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -97,7 +97,7 @@
               </div>
   
               <!-- Value Card 5: Teamwork -->
-              <div class="flex-shrink-0 z-10 w-[370px] md:w-[370px] lg:w-[370px] h-[470px] md:h-[470px] lg:h-[470px] px-3">
+              <div class="flex-shrink-0 z-10 w-full max-w-[370px] h-[470px] px-3">
                 <div class="bg-white rounded-[25px] p-8 lg:p-10 h-full flex flex-col items-center text-center shadow-sm">
                   <div class="w-24 h-24 lg:w-28 lg:h-28 rounded-full border-2 border-[#5eb3d6] flex items-center justify-center mb-6 lg:mb-8">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 lg:h-14 lg:w-14 text-[#5eb3d6]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -117,4 +117,4 @@
   
       </div>
     </div>
-  </section>
+  </section>
