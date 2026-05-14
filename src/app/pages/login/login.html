@@ -8,10 +8,22 @@
       <div
         class="border-[20px] border-transparent rounded-[20px] dark:bg-gray-900 bg-white shadow-lg xl:p-10 2xl:p-10 lg:p-10 md:p-10 sm:p-2 m-2"
       >
-        <h1 class="pt-8 pb-6 font-bold dark:text-gray-400 text-5xl text-center cursor-default">
+        <h1 class="pt-8 pb-4 font-bold dark:text-gray-400 text-5xl text-center cursor-default">
           Log in
         </h1>
+
+        <!-- Demo Credentials Hint -->
+        <div class="mb-6 p-4 bg-blue-50 border border-blue-100 rounded-xl text-center">
+          <p class="text-sm text-blue-600 font-bold uppercase tracking-wider mb-1">Demo Credentials</p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-[#274760] font-medium">
+            <p>Email: <span class="font-bold">admin@gmail.com</span></p>
+            <span class="hidden sm:inline text-gray-300">|</span>
+            <p>Password: <span class="font-bold">admin</span></p>
+          </div>
+        </div>
+
         <!-- Error Message Display -->
+
         <div *ngIf="errorMessage" class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 dark:border-red-400 text-red-700 dark:text-red-300 px-4 py-3 rounded mb-4">
           <p class="font-semibold">Login Failed</p>
           <p class="text-sm">{{ errorMessage }}</p>

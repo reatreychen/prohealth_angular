@@ -14,10 +14,11 @@ import Swal from 'sweetalert2';
 })
 export class Login {
   showPassword = false;
-  email = '';
-  password = '';
+  email = 'admin@gmail.com';
+  password = 'admin';
   isLoading = false;
   errorMessage = '';
+
 
   constructor(private authService: AuthService, private router: Router) {}
 
